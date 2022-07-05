@@ -14,11 +14,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   album.init({
-    id: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    previewImage: DataTypes.STRING
+    userId: {
+      type: DataTypes.INTEGER
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3, 256]
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [3, 256]
+      }
+    },
+    previewImage: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [3, 256]
+      }
+    }
   }, {
     sequelize,
     modelName: 'album',

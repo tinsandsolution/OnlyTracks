@@ -14,9 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   playlists.init({
-    id: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3, 256]
+      }
+    },
     previewImage: DataTypes.STRING
   }, {
     sequelize,

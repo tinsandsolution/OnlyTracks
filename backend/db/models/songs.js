@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       Song.belongsTo(models.User)
       Song.belongsTo(models.Album)
       Song.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'songId' })
+
+      Song.hasMany(models.PlaylistSong);
+      Song.belongsToMany(
+          models.Playlist,
+          { through: models.PlaylistSong}
+      );
     }
   }
   Song.init({

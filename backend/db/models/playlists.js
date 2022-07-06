@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     previewImage: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'playlists',
+    modelName: 'Playlist',
   });
   return Playlist;
 };

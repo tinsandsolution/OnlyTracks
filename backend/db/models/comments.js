@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'comments',
+    modelName: 'Comment',
   });
   return Comment;
 };

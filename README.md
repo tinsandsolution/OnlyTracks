@@ -65,7 +65,8 @@ Returns the information about the current user that is logged in.
       "firstName": "John",
       "lastName": "Smith",
       "email": "john.smith@gmail.com",
-      "username": "JohnSmith"
+      "username": "JohnSmith",
+      "token": "token"
     }
     ```
 
@@ -84,7 +85,7 @@ information.
 
     ```json
     {
-      "email": "john.smith@gmail.com",
+      "credential": "john.smith@gmail.com",
       "password": "secret password"
     }
     ```

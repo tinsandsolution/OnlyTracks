@@ -27,4 +27,13 @@ router.get('/current', requireAuth, async (req, res) => {
     return res.json(songs)
 })
 
+// get details of a song from id
+router.get('/:id', async (req, res) => {
+    const song = await Song.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+    return res.json(song)
+})
 module.exports = router;

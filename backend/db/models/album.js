@@ -16,25 +16,25 @@ module.exports = (sequelize, DataTypes) => {
   }
   Album.init({
     artistId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 256]
+        len: [3, 255]
       }
     },
     description: {
       type: DataTypes.STRING,
       validate: {
-        len: [3, 256]
+        len: [3, 255]
       }
     },
     previewImage: {
       type: DataTypes.STRING,
       validate: {
-        len: [3, 256]
+        len: [3, 255]
       }
     }
   }, {

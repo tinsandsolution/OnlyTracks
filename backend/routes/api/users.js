@@ -57,4 +57,24 @@ router.post(
     });
   }
 );
+
+//Get current User
+router.get(
+  '/current',
+  requireAuth,
+  async (req, res) => {
+    let info = await User.scope('currentUser').findOne({
+      where: {
+        id: req.user.id
+      },
+      attributes: ['id','firstName','lastName','email','username']
+    })
+    const { token } = req.cookies
+
+    info = info.toJSON()
+    info.token = token
+
+    return res.json(info)
+  }
+);
 module.exports = router;

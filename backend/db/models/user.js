@@ -35,10 +35,13 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword
       });
+      console.log('hit this')
       return await User.scope('currentUser').findByPk(user.id);
     }
     static associate(models) {
-      // define association here
+      //User.hasMany(models.Song, { sourceKey: 'id', foreignKey: 'userId' })
+      //User.hasMany(models.Album, { sourceKey: 'id', foreignKey: 'artistId' })
+      //User.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'userId' })
     }
   };
 
@@ -68,6 +71,27 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: [60, 60]
+        }
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          len: [1, 30]
+        }
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          len: [1, 30]
+        }
+      },
+      previewImage: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        validate: {
+          len: [1, 1000]
         }
       }
     },

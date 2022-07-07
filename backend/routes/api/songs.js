@@ -29,11 +29,22 @@ router.get('/current', requireAuth, async (req, res) => {
 
 // get details of a song from id
 router.get('/:id', async (req, res) => {
-    const song = await Song.findOne({
+    let song = await Song.findOne({
         where: {
           id: req.params.id
-        }
+        },
+        include:[
+            {
+                model: User,
+                attributes: ['id', 'username', 'previewImage']
+            }
+        ]
       })
-    return res.json(song)
+    //console.log(JSON.parse(song.toJSON()))
+
+    song = song.toJSON()
+    song.Artist = song.User
+    delete song.User
+    return res.send(song)
 })
 module.exports = router;

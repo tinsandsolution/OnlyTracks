@@ -74,10 +74,10 @@ router.post(
   async (req, res, next) => {
     const { credential, password } = req.body;
     console.log("this works")
-    const user = await User.login({ credential, password });
+    let user = await User.login({ credential, password });
     console.log("this works")
     if (!user) {
-      const err = new Error('Login failed');
+      const err = new Error('Invalid credentials');
       err.status = 401;
       err.title = 'Login failed';
       err.errors = ['Invalid credentials'];
@@ -86,6 +86,9 @@ router.post(
 
     await setTokenCookie(res, user);
 
+    delete user.dataValues.createdAt
+    delete user.dataValues.updatedAt
+    console.log(user)
     return res.json({
       user
     });

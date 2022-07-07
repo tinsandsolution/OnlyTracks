@@ -102,7 +102,7 @@ information.
       "lastName": "Smith",
       "email": "john.smith@gmail.com",
       "username": "JohnSmith",
-      "token": ""
+      "previewImage": "url"
     }
     ```
 

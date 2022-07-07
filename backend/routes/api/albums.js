@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User, Album } = require('../../db/models');
+const { User, Album, Song } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -48,32 +48,38 @@ router.post('/', requireAuth, async (req, res) => {
 router.post('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
     const userId = req.user.id
     const albumId = req.params.id
+    const {title, description, url, previewImage} = req.body
 
     //album must exist
     //find album info based on albumid
-    const album = Album.findByPk(albumId)
-    if (!album) {
-        const err = Error("Album couldn't be found");
-        err.title = "Not Found Error"
-        err.status = 404;
-        next(err)
+    const album = await Album.findOne({
+        where: { id : albumId},
+        attributes : ['artistId']
+    })
+    if (album === null) {
+      return res.status(404).json(    {
+        "message": "Album couldn't be found",
+        "statusCode": 404
+      })
+    }
+    const albumOwnerId = album.toJSON().artistId
+
+    if (albumOwnerId !== userId) {
+      return res.status(403).json({
+        "message" : "Album must belong to the current user"
+      })
     }
 
+    const createdSong = await Song.create({
+      userId: albumOwnerId,
+      albumId: albumId,
+      title: title,
+      description: description,
+      audioUrl: url,
+      previewImage: previewImage,
+    })
 
-    //album must belong to current user
-        //find userId of current album using album id, assign to albumOwnerId
-        //if albumOwnerId is not equal to ownerId, create an error
-        // const err = Error("Album must belong to the current user");
-        // err.title = "Authorization Error"
-        // err.status = 403;
-        // next(err)
-
-    //create album
-
-
-
-
-    return res.json({test: "test"})
+    return res.status(201).json(createdSong)
 })
 
 

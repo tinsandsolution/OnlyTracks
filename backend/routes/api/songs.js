@@ -48,10 +48,10 @@ router.get('/:id', async (req, res, next) => {
         ]
       })
     if (!song){
-      const err = Error("Song couldn't be found");
-      err.title = "Error"
-      err.status = 404;
-      next(err)
+      return res.status(404).json(    {
+        "message": "Song couldn't be found",
+        "statusCode": 404
+      })
     }
     //console.log(JSON.parse(song.toJSON()))
 

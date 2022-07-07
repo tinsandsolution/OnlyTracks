@@ -172,7 +172,6 @@ user's information.
       "lastName": "Smith",
       "username": "JohnSmith",
       "email": "john.smith@gmail.com",
-      "token": ""
     }
     ```
 

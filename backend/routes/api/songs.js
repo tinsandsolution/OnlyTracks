@@ -31,7 +31,7 @@ router.get('/current', requireAuth, async (req, res) => {
 })
 
 // get details of a song from id
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     let song = await Song.findOne({
         where: {
           id: req.params.id
@@ -40,9 +40,19 @@ router.get('/:id', async (req, res) => {
             {
                 model: User,
                 attributes: ['id', 'username', 'previewImage']
-            }
+            },
+            {
+              model: Album,
+              attributes: ['id', 'title', 'previewImage']
+          },
         ]
       })
+    if (!song){
+      const err = Error("Song couldn't be found");
+      err.title = "Error"
+      err.status = 404;
+      next(err)
+    }
     //console.log(JSON.parse(song.toJSON()))
 
     song = song.toJSON()

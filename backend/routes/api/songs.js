@@ -9,7 +9,15 @@ const router = express.Router();
 
 const { requireAuth } = require('../../utils/auth')
 
-
+const validateSong = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Song title is required'),
+  check('url')
+    .exists({ checkFalsy: true})
+    .withMessage('Audio is required'),
+  handleValidationErrors
+];
 
 // get all songs
 router.get('/', async (req, res) => {
@@ -65,12 +73,47 @@ router.get('/:id', async (req, res, next) => {
 
 
 // edit a song
-router.get('/:id', requireAuth, async (req, res) => {
-  const songs = await Song.findAll({
+router.put('/:id', requireAuth, validateSong, async (req, res) => {
+  const userId = req.user.id
+  const {title, description, url, previewImage} = req.body
+
+  const song = await Song.findOne({
       where: {
-        artistId: req.user.id
+        userId: req.user.id
       }
     })
-  return res.json({"songs": songs})
+
+  if (song === null) {
+    return res.status(404).title("Couldn't find a Song with the specified id").json(    {
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const songOwnerId = song.toJSON().userId
+
+  if (songOwnerId !== userId) {
+    return res.status(403).json({
+      "message" : "Song must belong to the current user"
+    })
+  }
+
+  const editedSong = await Song.update(
+    {
+      title: title,
+      description: description,
+      url: url,
+      previewImage: previewImage,
+    },
+  {where: {id : req.params.id}}
+  )
+
+  const newSong = await Song.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+
+  return res.json(newSong)
 })
 module.exports = router;

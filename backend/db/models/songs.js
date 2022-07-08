@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       }
     },
-    audioUrl: {
+    url: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {

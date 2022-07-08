@@ -25,7 +25,7 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      audioUrl: {
+      url: {
         type: Sequelize.STRING,
         allowNull: false
       },

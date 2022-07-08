@@ -13,13 +13,9 @@ const { requireAuth } = require('../../utils/auth')
 
 // get all songs
 router.get('/', async (req, res) => {
-    const songs = await Song.findAll( {
-      attributes: ["id","userId","albumId","title","description","audioUrl","createdAt","updatedAt","previewImage"]
+    let songs = await Song.findAll( {
+      attributes: ["id","userId","albumId","title","description","url","createdAt","updatedAt","previewImage"]
     })
-    //console.log(songs)
-    let editedSongs = songs.toJSON()
-    songs.url = songs.audioUrl
-    delete songs.audioUrl
     return res.json({"songs": songs})
 })
 

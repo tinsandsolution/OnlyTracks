@@ -17,6 +17,9 @@ router.get('/', async (req, res) => {
       attributes: ["id","userId","albumId","title","description","url","createdAt","updatedAt","previewImage"]
     })
     //console.log(songs)
+    let editedSongs = songs.toJSON()
+    songs.url = songs.audioUrl
+    delete songs.url
     return res.json({"songs": songs})
 })
 

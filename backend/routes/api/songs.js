@@ -13,8 +13,11 @@ const { requireAuth } = require('../../utils/auth')
 
 // get all songs
 router.get('/', async (req, res) => {
-    const songs = await Song.findAll()
-    return res.json(songs)
+    const songs = await Song.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    })
+    //console.log(songs)
+    return res.json({"songs": songs})
 })
 
 // get all songs by current user
@@ -24,16 +27,48 @@ router.get('/current', requireAuth, async (req, res) => {
           artistId: req.user.id
         }
       })
-    return res.json(songs)
+    return res.json({"songs": songs})
 })
 
 // get details of a song from id
-router.get('/:id', async (req, res) => {
-    const song = await Song.findOne({
+router.get('/:id', async (req, res, next) => {
+    let song = await Song.findOne({
         where: {
           id: req.params.id
-        }
+        },
+        include:[
+            {
+                model: User,
+                attributes: ['id', 'username', 'previewImage']
+            },
+            {
+              model: Album,
+              attributes: ['id', 'title', 'previewImage']
+          },
+        ]
       })
-    return res.json(song)
+    if (!song){
+      return res.status(404).json(    {
+        "message": "Song couldn't be found",
+        "statusCode": 404
+      })
+    }
+    //console.log(JSON.parse(song.toJSON()))
+
+    song = song.toJSON()
+    song.Artist = song.User
+    delete song.User
+    return res.send(song)
+})
+
+
+// edit a song
+router.get('/:id', requireAuth, async (req, res) => {
+  const songs = await Song.findAll({
+      where: {
+        artistId: req.user.id
+      }
+    })
+  return res.json({"songs": songs})
 })
 module.exports = router;

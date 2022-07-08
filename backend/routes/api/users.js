@@ -10,7 +10,7 @@ const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Please provide a valid email.'),
+    .withMessage('Invalid email'),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
@@ -23,8 +23,15 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
+  check('firstName')
+    .exists({ checkFalsy: true})
+    .withMessage('First Name is required'),
+  check('lastName')
+    .exists({ checkFalsy: true})
+    .withMessage('Last Name is required'),
   handleValidationErrors
 ];
+
 
 const router = express.Router();
 
@@ -46,11 +53,23 @@ const router = express.Router();
 router.post(
   '/',
   validateSignup,
-  async (req, res) => {
+  async (req, res, next) => {
     const { email, password, username, firstName, lastName, previewImage } = req.body;
-    const user = await User.signup({ email, username, password });
-    console.log('went back to post')
 
+    const errors = {}
+    const alreadyHasEmail = await User.findOne({ where : {email : email} })
+    const alreadyHasUsername = await User.findOne({ where: {username : username} })
+    if (alreadyHasEmail) errors.email = "User with that email already exists"
+    if (alreadyHasUsername) errors.username = "User with that username already exists"
+    if (errors !== {}) {
+      const err = Error("User already exists");
+      err.errors = errors;
+      err.status = 403;
+      err.title = 'Bad signup request';
+      next(err)
+    }
+
+    let user = await User.signup({ email, username, password, firstName, lastName });
     await setTokenCookie(res, user);
     return res.json({
       user,

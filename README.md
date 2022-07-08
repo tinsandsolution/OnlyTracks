@@ -66,7 +66,6 @@ Returns the information about the current user that is logged in.
       "lastName": "Smith",
       "email": "john.smith@gmail.com",
       "username": "JohnSmith",
-      "token": "token"
     }
     ```
 
@@ -103,7 +102,7 @@ information.
       "lastName": "Smith",
       "email": "john.smith@gmail.com",
       "username": "JohnSmith",
-      "token": ""
+      "previewImage": "url"
     }
     ```
 
@@ -173,7 +172,6 @@ user's information.
       "lastName": "Smith",
       "username": "JohnSmith",
       "email": "john.smith@gmail.com",
-      "token": ""
     }
     ```
 

@@ -60,4 +60,15 @@ router.get('/:id', async (req, res, next) => {
     delete song.User
     return res.send(song)
 })
+
+
+// edit a song
+router.get('/:id', requireAuth, async (req, res) => {
+  const songs = await Song.findAll({
+      where: {
+        artistId: req.user.id
+      }
+    })
+  return res.json({"songs": songs})
+})
 module.exports = router;

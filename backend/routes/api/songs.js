@@ -79,7 +79,7 @@ router.put('/:id', requireAuth, validateSong, async (req, res) => {
 
   const song = await Song.findOne({
       where: {
-        userId: req.user.id
+        id: req.params.id
       }
     })
 
@@ -114,6 +114,39 @@ router.put('/:id', requireAuth, validateSong, async (req, res) => {
     }
   })
 
-  return res.json(newSong)
+  return res.status(200).json(newSong)
+})
+
+
+// delete a song
+router.delete('/:id', requireAuth, async (req, res) => {
+  const userId = req.user.id
+
+  const song = await Song.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+
+  if (song === null) {
+    return res.status(404).title("Couldn't find a Song with the specified id").json(    {
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const songOwnerId = song.toJSON().userId
+
+  if (songOwnerId !== userId) {
+    return res.status(403).json({
+      "message" : "Song must belong to the current user"
+    })
+  }
+
+  const deletedSong = await Song.destroy(
+    {where: {id : req.params.id}}
+  )
+
+  return res.status(200).json({ "message" : "Successfully deleted", "status code" : 200})
 })
 module.exports = router;

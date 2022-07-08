@@ -23,8 +23,9 @@ router.get('/', async (req, res) => {
 router.get('/current', requireAuth, async (req, res) => {
     const songs = await Song.findAll({
         where: {
-          artistId: req.user.id
-        }
+          userId: req.user.id
+        },
+        attributes: ["id","userId","albumId","title","description","url","createdAt","updatedAt","previewImage"]
       })
     return res.json({"songs": songs})
 })

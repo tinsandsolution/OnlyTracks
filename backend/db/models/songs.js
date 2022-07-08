@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Song.belongsTo(models.User)
+      Song.belongsTo(models.User, { foreignKey: 'userId' })
       Song.belongsTo(models.Album)
       Song.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'songId' })
 

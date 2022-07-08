@@ -58,8 +58,8 @@ router.get('/:id', async (req, res, next) => {
     //console.log(JSON.parse(song.toJSON()))
 
     song = song.toJSON()
-    // song.Artist = song.User
-    // delete song.User
+    song.Artist = song.User
+    delete song.User
     return res.send(song)
 })
 

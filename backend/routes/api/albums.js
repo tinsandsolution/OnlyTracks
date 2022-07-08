@@ -52,6 +52,7 @@ router.post('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
 
     //album must exist
     //find album info based on albumid
+    console.log("happens")
     const album = await Album.findOne({
         where: { id : albumId},
         attributes : ['artistId']
@@ -62,6 +63,7 @@ router.post('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
         "statusCode": 404
       })
     }
+    console.log("still happens")
     const albumOwnerId = album.toJSON().artistId
 
     if (albumOwnerId !== userId) {
@@ -75,7 +77,7 @@ router.post('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
       albumId: albumId,
       title: title,
       description: description,
-      audioUrl: url,
+      url: url,
       previewImage: previewImage,
     })
 

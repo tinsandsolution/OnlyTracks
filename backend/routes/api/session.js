@@ -84,13 +84,14 @@ router.post(
       return next(err);
     }
 
-    await setTokenCookie(res, user);
+    const token = await setTokenCookie(res, user);
 
     delete user.dataValues.createdAt
     delete user.dataValues.updatedAt
+
     console.log(user)
     return res.json({
-      user
+      user, token
     });
   }
 );

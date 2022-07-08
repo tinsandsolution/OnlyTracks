@@ -1,7 +1,7 @@
 // backend/routes/api/users.js
 const express = require('express')
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const { check } = require('express-validator');
@@ -61,7 +61,7 @@ router.post(
     const alreadyHasUsername = await User.findOne({ where: {username : username} })
     if (alreadyHasEmail) errors.email = "User with that email already exists"
     if (alreadyHasUsername) errors.username = "User with that username already exists"
-    if (errors !== {}) {
+    if (Object.keys(errors).length !== 0) {
       const err = Error("User already exists");
       err.errors = errors;
       err.status = 403;
@@ -69,10 +69,11 @@ router.post(
       next(err)
     }
 
-    let user = await User.signup({ email, username, password, firstName, lastName });
+    let user = await User.signup({ email, username, password, firstName, lastName, previewImage });
     await setTokenCookie(res, user);
+    const { token } = req.cookies
     return res.json({
-      user,
+      user, token
     });
   }
 );

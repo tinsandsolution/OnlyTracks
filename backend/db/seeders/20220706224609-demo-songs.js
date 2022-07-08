@@ -9,7 +9,7 @@ module.exports = {
         albumId: 1,
         title: 'Last Great American Dynasty',
         description: 'Its about the rockefellers',
-        audioUrl: "sdafasdfdsafsd2",
+        url: "sdafasdfdsafsd2",
         previewImage: 'black-and-white.jpg'
       },
       {
@@ -17,7 +17,7 @@ module.exports = {
         albumId: 1,
         title: 'Look What You Made Me Do',
         description: 'Its about revenge',
-        audioUrl: "sdafasdfdsafsd",
+        url: "sdafasdfdsafsd",
         previewImage: 'black-and-white.jpg'
       }
     ]);

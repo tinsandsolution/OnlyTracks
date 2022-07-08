@@ -37,16 +37,16 @@ router.get('/:id', async (req, res, next) => {
         where: {
           id: req.params.id
         },
-        // include:[
-        //     {
-        //         model: User,
-        //         attributes: ['id', 'username', 'previewImage']
-        //     },
-        //     {
-        //       model: Album,
-        //       attributes: ['id', 'title', 'previewImage']
-        //   },
-        // ]
+        include:[
+            {
+                model: User,
+                attributes: ['id', 'username', 'previewImage']
+            },
+            {
+              model: Album,
+              attributes: ['id', 'title', 'previewImage']
+          },
+        ]
       })
     if (!song){
       const err = Error("Couldn't find a song with the specified id");

@@ -33,6 +33,7 @@ router.get('/current', requireAuth, async (req, res) => {
 // get details of a song from id
 router.get('/:id', async (req, res, next) => {
     let song = await Song.findOne({
+        attributes: ["id","userId","albumId","title","description","url","createdAt","updatedAt","previewImage"],
         where: {
           id: req.params.id
         },
@@ -48,10 +49,11 @@ router.get('/:id', async (req, res, next) => {
         ]
       })
     if (!song){
-      return res.status(404).json(    {
-        "message": "Song couldn't be found",
-        "statusCode": 404
-      })
+      const err = Error("Couldn't find a song with the specified id");
+      err.message = "Song couldn't be found"
+      err.status = 404;
+      err.title = "Couldn't find a song with the specified id";
+      next(err)
     }
     //console.log(JSON.parse(song.toJSON()))
 

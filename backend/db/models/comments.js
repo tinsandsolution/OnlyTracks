@@ -15,8 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Comment.init({
-    userId: DataTypes.INTEGER,
-    songId: DataTypes.INTEGER,
+    userId: {
+      type : DataTypes.INTEGER,
+      allowNull: false
+    },
+    songId: {
+      type : DataTypes.INTEGER,
+      allowNull: false
+    },
     body: {
       type: DataTypes.STRING,
       allowNull: false,

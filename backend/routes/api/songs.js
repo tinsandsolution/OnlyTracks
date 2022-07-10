@@ -19,6 +19,14 @@ const validateSong = [
   handleValidationErrors
 ];
 
+const validateComment = [
+  check('body')
+    .exists({ checkFalsy: true })
+    .withMessage('Comment body text is required'),
+  handleValidationErrors
+];
+
+
 // get all songs
 router.get('/', async (req, res) => {
     let songs = await Song.findAll( {
@@ -152,7 +160,6 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
 
 //get all comments by a song's id
-// get details of a song from id
 router.get('/:id/comments', async (req, res, next) => {
   let song = await Song.findByPk(req.params.id)
 
@@ -176,5 +183,23 @@ router.get('/:id/comments', async (req, res, next) => {
 
   return res.json(comments)
 })
+
+//create a comment for a song based on the song's id
+router.post('/:id/comments', requireAuth, validateComment, async (req, res, next) => {
+  let song = await Song.findByPk(req.params.id)
+
+  if (!song){
+    const err = Error("Couldn't find a song with the specified id");
+    err.message = "Song couldn't be found"
+    err.status = 404;
+    err.title = "Couldn't find a song with the specified id";
+    next(err)
+  }
+
+  let comment = await Comment.create({ songId: req.params.id, userId: req.user.id, body: req.body.body })
+
+  return res.json(comment)
+})
+
 
 module.exports = router;

@@ -19,6 +19,14 @@ module.exports = {
         description: 'Its about revenge',
         url: "sdafasdfdsafsd",
         previewImage: 'black-and-white.jpg'
+      },
+      {
+        userId: 2,
+        albumId: 2,
+        title: 'Call Me Maybe',
+        description: 'Its about a hot neighbor',
+        url: "youtube.com",
+        previewImage: 'sword.jpg'
       }
     ]);
   },

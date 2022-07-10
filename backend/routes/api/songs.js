@@ -41,24 +41,31 @@ router.get('/', async (req, res) => {
     let con4 = size < 0 || size > 20
     if (con3 || con4) size = 20
 
+
+    //console.log(page)
+    //console.log(size)
     let pagination = 0
     let limit = 0
     let offset = 20
-    if (page !== 1 && size !== 0) {
+    if (page >= 1 && size >= 0) {
       pagination = 1
       limit = size;
-      offset = size * (page - 1) + 1
+      console.log(size)
+      offset = size * (page - 1)
     }
+    //console.log(limit)
+    //console.log(offset)
 
-    if (title) extraParams.title = title
-    if (createdAt) extraParams.createdAt = createdAt
+
+    if (title !== undefined) extraParams.title = title
+    if (createdAt !== undefined) extraParams.createdAt = createdAt
 
     let songs = {}
     if(pagination) songs = await Song.findAll({
       "limit": limit,
       "offset": offset,
       where: extraParams})
-    else songs = await Song.findAll({extraParams})
+    else songs = await Song.findAll({where : extraParams})
     return res.json({"songs": songs, page, size})
 })
 

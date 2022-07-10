@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User, Song, Album } = require('../../db/models');
+const { User, Song, Album, Playlist } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -73,7 +73,7 @@ router.get('/:id/songs', async (req, res, next) => {
     res.status(200).json(songs)
 })
 
-//get songs of an artist from id
+//get albums of an artist from id
 router.get('/:id/albums', async (req, res, next) => {
     const artist = await User.findOne({
         where: { id : req.params.id },
@@ -98,6 +98,33 @@ router.get('/:id/albums', async (req, res, next) => {
     })
 
     res.status(200).json(albums)
+})
+
+//get playlists of an artist from id
+router.get('/:id/playlists', async (req, res, next) => {
+    const artist = await User.findOne({
+        where: { id : req.params.id },
+        attributes : [
+            'id',
+            'username',
+            'previewImage',
+        ],
+    })
+    if (!artist){
+        const err = Error("Couldn't find an Artists with the specified id");
+        err.message = "Artists couldn't be found"
+        err.status = 404;
+        err.title = "Couldn't find an Artists with the specified id";
+        next(err)
+      }
+
+    const playlists = await Playlist.findAll({
+        where : {
+            userId : req.params.id
+        }
+    })
+
+    res.status(200).json(playlists)
 })
 
 module.exports = router;

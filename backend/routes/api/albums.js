@@ -9,7 +9,7 @@ const router = express.Router();
 
 const { requireAuth } = require('../../utils/auth')
 
-const validateNewAlbum = [
+const validateNewSong= [
     check('title')
       .exists({ checkFalsy: true })
       .withMessage('Song title is required'),
@@ -18,6 +18,13 @@ const validateNewAlbum = [
       .withMessage('Audio is required'),
     handleValidationErrors
   ];
+
+const validateNewAlbum= [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Song title is required'),
+  handleValidationErrors
+];
 
 
 // create an album
@@ -39,13 +46,55 @@ router.post('/', requireAuth, async (req, res) => {
     const params = req.body; // { description: "description",...}
     params.artistId = req.user.id
 
-    const album = await Album.create(params)
+    let album = await Album.create(params)
+    album = JSON.stringify(album)
+    album = JSON.parse(album)
+
+    console.log(typeof album)
+    album["userId"] = album["artistId"]
     console.log(album)
-    return res.json(req.body)
+    delete album["artistId"]
+    return res.status(200).send(album)
+})
+
+router.get('/', async (req, res) => {
+  const albums = await Album.findAll()
+  return res.json({ "Albums" : albums} )
+})
+
+// get details of an album based on id
+router.get('/:id', async (req, res) => {
+  const albumId = req.params.id
+
+  const albums = await Album.findAll({
+    where: { id : albumId},
+    include: Song
+  })
+
+  if (albums === null) {
+    return res.status(404).json({
+      "message": "Album couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  // const songs  = await Song.findAll({ where : {albumId : albumId}})
+
+  // let returnObject = json.
+  // returnObject.songs = songs.toJSON()
+  return res.send(albums)
+})
+
+// get all albums created by the current user
+router.get('/current', requireAuth, async (req, res) => {
+  artistId = req.user.id
+
+  const albums = await Album.findAll( { where: {artistId : artistId}})
+  return res.json({ "Albums" : albums} )
 })
 
 //create a song for an album based on the album's id
-router.post('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
+router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
     const userId = req.user.id
     const albumId = req.params.id
     const {title, description, url, previewImage} = req.body
@@ -68,7 +117,8 @@ router.post('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
 
     if (albumOwnerId !== userId) {
       return res.status(403).json({
-        "message" : "Album must belong to the current user"
+        "message" : "Album must belong to the current user",
+        "statusCode": 404
       })
     }
 

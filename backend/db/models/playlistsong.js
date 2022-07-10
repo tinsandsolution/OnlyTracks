@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      PlaylistSong.belongsTo(models.Playlist, { sourceKey: 'playlistId', foreignKey: 'id' })
-      PlaylistSong.belongsTo(models.Song, { sourceKey: 'songId', foreignKey: 'id' })
+      PlaylistSong.belongsTo(models.Playlist, { foreignKey: 'playlistId' })
+      PlaylistSong.belongsTo(models.Song, { foreignKey: 'songId' })
     }
   }
   PlaylistSong.init({

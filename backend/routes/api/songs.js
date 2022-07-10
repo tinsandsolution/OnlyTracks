@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User, Song, Album } = require('../../db/models');
+const { User, Song, Album, Comment} = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -149,4 +149,32 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
   return res.status(200).json({ "message" : "Successfully deleted", "status code" : 200})
 })
+
+
+//get all comments by a song's id
+// get details of a song from id
+router.get('/:id/comments', async (req, res, next) => {
+  let song = await Song.findByPk(req.params.id)
+
+  if (!song){
+    const err = Error("Couldn't find a song with the specified id");
+    err.message = "Song couldn't be found"
+    err.status = 404;
+    err.title = "Couldn't find a song with the specified id";
+    next(err)
+  }
+
+  let comments = await Comment.findAll({
+    where: {
+      songId: req.params.id
+    },
+    include : [{
+      model: User,
+      attributes: ["id", "username"]
+    }]
+  })
+
+  return res.json(comments)
+})
+
 module.exports = router;

@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      artistId: {
+      userId: {
         type: Sequelize.INTEGER,
         references: { model: 'Users', key: 'id' },
         onDelete: 'CASCADE'

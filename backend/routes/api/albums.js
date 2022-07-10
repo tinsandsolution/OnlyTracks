@@ -44,17 +44,11 @@ router.post('/', requireAuth, async (req, res) => {
     //userId, description, title, previewImage
     //const userId = User.scope("currentUser");
     const params = req.body; // { description: "description",...}
-    params.artistId = req.user.id
+    params.userId = req.user.id
 
     let album = await Album.create(params)
-    album = JSON.stringify(album)
-    album = JSON.parse(album)
 
-    console.log(typeof album)
-    album["userId"] = album["artistId"]
-    console.log(album)
-    delete album["artistId"]
-    return res.status(200).send(album)
+    return res.status(200).json(album)
 })
 
 router.get('/', async (req, res) => {
@@ -134,5 +128,65 @@ router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
     return res.status(201).json(createdSong)
 })
 
+//edit an album
+router.put('/:id', requireAuth, validateNewAlbum, async (req, res, next) => {
+  const params = req.body; // { description: "description",...}
+  params.userId = req.user.id
+  const albumId = req.params.id
+
+  let findAlbum = await Album.findByPk(albumId)
+  if (findAlbum === null) {
+    return res.status(404).json(    {
+      "message": "Album couldn't be found",
+      "statusCode": 404
+    })
+  }
+  console.log(findAlbum.toJSON().userId)
+  if (findAlbum.toJSON().userId !== req.user.id) {
+    return res.status(403).json({
+      "message" : "Album must belong to the current user",
+      "statusCode": 404
+    })
+  }
+
+
+  let album = await Album.update(params, { where: {id : albumId}})
+
+  let updatedAlbum = await Album.findByPk(albumId)
+
+  return res.status(200).json(updatedAlbum)
+})
+
+//delete an album
+router.delete('/:id', requireAuth, async (req, res) => {
+  const userId = req.user.id
+
+  const album = await Album.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+
+  if (album === null) {
+    return res.status(404).title("Couldn't find a Song with the specified id").json(    {
+      "message": "Album couldn't be found",
+      "statusCode": 404
+    })
+  }
+
+  const albumOwnerId = album.toJSON().userId
+
+  if (albumOwnerId !== userId) {
+    return res.status(403).json({
+      "message" : "Album must belong to the current user"
+    })
+  }
+
+  const deletedAlbum = await Album.destroy(
+    {where: {id : req.params.id}}
+  )
+
+  return res.status(200).json({ "message" : "Successfully deleted", "status code" : 200})
+})
 
 module.exports = router;

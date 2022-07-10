@@ -81,9 +81,9 @@ router.get('/:id', async (req, res) => {
 
 // get all albums created by the current user
 router.get('/current', requireAuth, async (req, res) => {
-  artistId = req.user.id
+  let userId = req.user.id
 
-  const albums = await Album.findAll( { where: {artistId : artistId}})
+  const albums = await Album.findAll( { where: {userId : userId}})
   return res.json({ "Albums" : albums} )
 })
 
@@ -98,7 +98,7 @@ router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
     console.log("happens")
     const album = await Album.findOne({
         where: { id : albumId},
-        attributes : ['artistId']
+        attributes : ['userId']
     })
     if (album === null) {
       return res.status(404).json(    {
@@ -107,7 +107,7 @@ router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
       })
     }
     console.log("still happens")
-    const albumOwnerId = album.toJSON().artistId
+    const albumOwnerId = album.toJSON().userId
 
     if (albumOwnerId !== userId) {
       return res.status(403).json({

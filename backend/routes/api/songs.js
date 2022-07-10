@@ -29,10 +29,37 @@ const validateComment = [
 
 // get all songs
 router.get('/', async (req, res) => {
-    let songs = await Song.findAll( {
-      attributes: ["id","userId","albumId","title","description","url","createdAt","updatedAt","previewImage"]
-    })
-    return res.json({"songs": songs})
+    let extraParams = {}
+
+    let {page, size, title, createdAt} = req.query
+
+    let con1 = !page || isNaN(page)
+    let con2 = page < 0 || page > 10
+    if (con1 || con2) page = 0
+
+    let con3 = !size || isNaN(size)
+    let con4 = size < 0 || size > 20
+    if (con3 || con4) size = 20
+
+    let pagination = 0
+    let limit = 0
+    let offset = 20
+    if (page !== 1 && size !== 0) {
+      pagination = 1
+      limit = size;
+      offset = size * (page - 1)
+    }
+
+    if (title) extraParams.title = title
+    if (createdAt) extraParams.createdAt = createdAt
+
+    let songs = {}
+    if(pagination) songs = await Song.findAll({
+      "limit": limit,
+      "offset": offset,
+      where: extraParams})
+    else songs = await Song.findAll({extraParams})
+    return res.json({"songs": songs, page, size})
 })
 
 // get all songs by current user

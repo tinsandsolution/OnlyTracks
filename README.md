@@ -1214,7 +1214,7 @@ Creates and returns a new playlist.
     ```json
     {
       "name": "Current Favorites",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 

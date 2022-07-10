@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
     if (page !== 1 && size !== 0) {
       pagination = 1
       limit = size;
-      offset = size * (page - 1)
+      offset = size * (page + 1)
     }
 
     if (title) extraParams.title = title

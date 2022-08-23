@@ -56,4 +56,32 @@ const sessionReducer = (state = initialState, action) => {
   }
 };
 
+// signup
+export const signup = (user) => async (dispatch) => {
+    const { username, email, password, firstName, lastName, previewImage } = user;
+    const response = await csrfFetch("/api/users/", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        firstName,
+        lastName,
+        previewImage
+      }),
+    });
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+  };
+
+//logout
+export const logout = () => async (dispatch) => {
+  const response = await csrfFetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeUser());
+  return response;
+};
+
 export default sessionReducer;

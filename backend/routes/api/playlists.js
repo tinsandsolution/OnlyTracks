@@ -32,7 +32,7 @@ router.post('/', requireAuth, validatePlaylist, async (req, res, next) => {
     return res.json(playlist)
   })
 
-//create a comment for a song based on the song's id
+//create a song based on the album's id
 router.post('/:id', requireAuth, async (req, res, next) => {
     let playlistId = req.params.id
     let songId = req.body.songId

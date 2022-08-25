@@ -84,4 +84,23 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
+//upload Song
+// export const uploadSong = () => sync (dispatch) => {
+//     const { username, email, password, firstName, lastName, previewImage } = user;
+//     const response = await csrfFetch("/api/users/", {
+//       method: "POST",
+//       body: JSON.stringify({
+//         username,
+//         email,
+//         password,
+//         firstName,
+//         lastName,
+//         previewImage
+//       }),
+//     });
+//     const data = await response.json();
+//     dispatch(setUser(data.user));
+//     return response;
+//   };
+
 export default sessionReducer;

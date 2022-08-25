@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as songActions from "../../store/songs";
+import * as sessionActions from "../../store/session";
 import './SongSubmitForm.css';
 
 function SongSubmitPage() {
@@ -59,16 +59,16 @@ function SongSubmitPage() {
         <label>
             Song File
           <input
-            type="file" name="songFile"
-            onChange={(e) => setFile(e.target.value[0])}
+            type="text" value={file}
+            onChange={(e) => setFile(e.target.value)}
             required
           />
         </label>
         <label>
             Song Image
           <input
-            type="file" name="imageFile"
-            onChange={(e) => setPreviewImage(e.target.value[0])}
+            type="text" value={previewImage}
+            onChange={(e) => setPreviewImage(e.target.value)}
             required
           />
         </label>

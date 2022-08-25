@@ -32,6 +32,9 @@ function SongSubmitPage() {
     // //   return setErrors(['Confirm Password field must be the same as the Password field']);
     // };
 
+    //requirements
+    //file must be mp3
+
     return (
       <>
       <form>
@@ -56,7 +59,7 @@ function SongSubmitPage() {
         <label>
             Song File
           <input
-            type="file"
+            type="file" name="songFile"
             onChange={(e) => setFile(e.target.value[0])}
             required
           />
@@ -64,7 +67,7 @@ function SongSubmitPage() {
         <label>
             Song Image
           <input
-            type="file"
+            type="file" name="imageFile"
             onChange={(e) => setPreviewImage(e.target.value[0])}
             required
           />

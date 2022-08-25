@@ -1,4 +1,7 @@
 const express = require('express')
+const fileHandler = require("express-fileupload");
+const path = require("path");
+import generateFileName from '../../utils/words';
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User, Song, Album, Comment} = require('../../db/models');
@@ -234,6 +237,32 @@ router.post('/:id/comments', requireAuth, validateComment, async (req, res, next
 
   return res.json(comment)
 })
+
+//upload a song file
+// router.post('/upload', requireAuth, async (req, res, next) => {
+
+//   if (!req.files.songFile){
+//     const err = Error("No song exists");
+//     err.message = "No song exists"
+//     err.status = 404;
+//     err.title = "Couldn't upload the song";
+//     next(err)
+//   }
+
+//   if (!req.files.imageFile){
+//     const err = Error("No image file exists");
+//     err.message = "No image file exists"
+//     err.status = 404;
+//     err.title = "Couldn't upload the image file";
+//     next(err)
+//   }
+
+
+
+
+//   return res.json({"fdsafasd" : "fdsafasdfds"})
+// })
+
 
 
 module.exports = router;

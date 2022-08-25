@@ -5,17 +5,26 @@ import * as sessionActions from "../../store/session";
 import './SongSubmitForm.css';
 
 function SongSubmitPage() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
+
     // const sessionUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [file, setFile] = useState()
-    const [previewImage, setPreviewImage] = useState()
+    const [file, setFile] = useState("")
+    const [previewImage, setPreviewImage] = useState("")
 
     const [errors, setErrors] = useState([]);
 
 
     const handleSubmit = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.testCase({title, description, file, previewImage}))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
         // dispatch the info to the database stuff
         //
     }
@@ -37,7 +46,7 @@ function SongSubmitPage() {
 
     return (
       <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Song Title
           <input
@@ -52,7 +61,7 @@ function SongSubmitPage() {
           <input
             type="textarea"
             value={description}
-            onChange={(e) => setFile(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>

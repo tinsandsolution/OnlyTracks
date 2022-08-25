@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+import * as songActions from "../../store/songs";
 import './SongSubmitForm.css';
 
 function SongSubmitPage() {
@@ -10,15 +10,15 @@ function SongSubmitPage() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [file, setFile] = useState()
+    const [previewImage, setPreviewImage] = useState()
 
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [firstName, setfirstName] = useState("defaultFirstName")
-    // const [lastName, setLastName] = useState("defaultLastName")
-    // const [previewImage, setPreviewImage] = useState("https://m.media-amazon.com/images/M/MV5BZDliZjU1NTctNTc0YS00NGVhLWI1ODUtZGYxMDFmZjM2YmU3XkEyXkFqcGdeQXVyMTI2MjA1NjA@._V1_.jpg")
-    // const [confirmPassword, setConfirmPassword] = useState("");
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
+
+    const handleSubmit = (e) => {
+        // dispatch the info to the database stuff
+        //
+    }
     // const handleSubmit = (e) => {
     //   e.preventDefault();
     // //   if (password === confirmPassword) {
@@ -34,7 +34,6 @@ function SongSubmitPage() {
 
     return (
       <>
-      <p>fdsafsd</p>
       <form>
         <label>
           Song Title
@@ -55,12 +54,22 @@ function SongSubmitPage() {
           />
         </label>
         <label>
+            Song File
           <input
             type="file"
             onChange={(e) => setFile(e.target.value[0])}
             required
           />
         </label>
+        <label>
+            Song Image
+          <input
+            type="file"
+            onChange={(e) => setPreviewImage(e.target.value[0])}
+            required
+          />
+        </label>
+        <button type="submit">Create New Track</button>
       </form>
       {/* <form onSubmit={handleSubmit}>
         <ul>

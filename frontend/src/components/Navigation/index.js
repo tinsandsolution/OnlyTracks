@@ -10,7 +10,8 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <ProfileButton user={sessionUser} />,
+      <div> Upload </div>
     );
   } else {
     sessionLinks = (

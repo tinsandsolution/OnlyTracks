@@ -38,8 +38,8 @@ function SignupFormPage() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        Email
         <input
+          placeholder="Email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -47,8 +47,8 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        Username
         <input
+          placeholder="Username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -56,8 +56,8 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        Password
         <input
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -65,8 +65,8 @@ function SignupFormPage() {
         />
       </label>
       <label>
-        Confirm Password
         <input
+          placeholder="Confirm Password"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

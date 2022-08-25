@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import SongSubmitPage from '../SongSubmitPage';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -10,8 +11,10 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />,
-      <div> Upload </div>
+      <>
+      <ProfileButton user={sessionUser} />
+      <NavLink to="/upload">Add Song</NavLink>
+      </>
     );
   } else {
     sessionLinks = (

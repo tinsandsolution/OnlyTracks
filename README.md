@@ -1,5 +1,15 @@
 # OnlyTracks
 
+# Intro
+
+# Technologies
+
+# - image -
+
+# How to launch locally
+
+(move everything below this to wiki)
+
 ## Database Schema Design
 
 ![image](OnlyTracks.png)

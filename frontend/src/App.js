@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongSubmitPage from "./components/SongSubmitPage";
+import SongReadPage from "./components/SongReadPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -25,9 +26,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/upload">
+          {/* <Route path="/upload">
             <SongSubmitPage />
           </Route>
+          <Route path="/catalog">
+            <SongReadPage />
+          </Route> */}
         </Switch>
       )}
     </>

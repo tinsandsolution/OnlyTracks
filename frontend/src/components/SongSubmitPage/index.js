@@ -6,7 +6,6 @@ import './SongSubmitForm.css';
 
 function SongSubmitPage() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
 
     // const sessionUser = useSelector((state) => state.session.user);
     const [title, setTitle] = useState("");

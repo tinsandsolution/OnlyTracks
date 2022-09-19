@@ -84,25 +84,7 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-//upload Song
-// export const uploadSong = () => sync (dispatch) => {
-//     const { username, email, password, firstName, lastName, previewImage } = user;
-//     const response = await csrfFetch("/api/users/", {
-//       method: "POST",
-//       body: JSON.stringify({
-//         username,
-//         email,
-//         password,
-//         firstName,
-//         lastName,
-//         previewImage
-//       }),
-//     });
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-//   };
-
+//should be renamed to add song
 export const testCase = async (user) => {
   console.log(user)
   console.log("fasdfasdf")
@@ -140,5 +122,17 @@ export const testCase = async (user) => {
   //   previewImage: previewImage,
   // })
 }
+
+export const showSongs = async () => {
+
+  const response = await csrfFetch("/api/songs",{
+    method: "GET"
+  })
+
+  const data = await response.json()
+  console.log(data)
+  return data
+}
+
 
 export default sessionReducer;

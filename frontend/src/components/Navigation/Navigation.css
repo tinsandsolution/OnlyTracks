@@ -29,6 +29,7 @@
     margin-right: 5px;
     background-color: #3B8EA5;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .signup-button {
@@ -40,6 +41,7 @@
     margin-right: 5px;
     font-size: 18px;
     border: 1px solid white;
+    cursor: pointer;
 }
 
 .nav-left {

@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+import * as songActions from "./store/songs"
 import Navigation from "./components/Navigation";
 import SongSubmitPage from "./components/SongSubmitPage";
 import SongReadPage from "./components/SongReadPage"
@@ -26,9 +27,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/upload">
+          {/* <Route path="/upload">
             <SongSubmitPage />
-          </Route>
+          </Route> */}
           <Route path="/catalog">
             <SongReadPage />
           </Route>

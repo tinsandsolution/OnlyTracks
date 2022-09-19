@@ -10,7 +10,7 @@ module.exports = {
       type: Sequelize.STRING(30),
       allowNull: false,
     })
-    await queryInterface.addColumn('Users', 'previewImage', { type: Sequelize.STRING(100) })
+    await queryInterface.addColumn('Users', 'previewImage', { type: Sequelize.STRING(256) })
 
     /**
      * Add altering commands here.

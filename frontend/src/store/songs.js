@@ -22,7 +22,7 @@ const songReducer = (state = initialState, action) => {
       // songs:
       // so what you want to do is basically just get the songs part of that
       // console.log(action.songs)
-      return { ...state, songs: [...action.songs.songs] };
+      return { ...state, ...action.songs.songs};
     default:
       return state;
   }
@@ -39,8 +39,10 @@ export const getSongs = () => async (dispatch) => {
   })
 
   const data = await response.json()
+  console.log("printing song data")
+  console.log(data)
   dispatch(loadSongs(data))
-  console.log("test")
+  // console.log("test")
   return data
 }
 

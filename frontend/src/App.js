@@ -26,12 +26,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          {/* <Route path="/upload">
+          <Route path="/upload">
             <SongSubmitPage />
           </Route>
           <Route path="/catalog">
             <SongReadPage />
-          </Route> */}
+          </Route>
         </Switch>
       )}
     </>

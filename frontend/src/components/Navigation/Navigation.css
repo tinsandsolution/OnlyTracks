@@ -1,0 +1,12 @@
+.navbar {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    background-color: #1f0f53;
+}
+
+.navlogo {
+    max-height: 40px;
+}

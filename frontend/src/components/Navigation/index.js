@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import splash from '../../assets/dream_Kandinsky.png'
 import logo from '../../assets/running-track.png'
+import LoginFormModal from '../LoginFormModal';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -17,7 +18,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <div className="not-logged-in">
-          <NavLink className="login-button" to="/login">Log In</NavLink>
+          <LoginFormModal />
           <NavLink className="signup-button" to="/signup">Sign Up</NavLink>
         </div>
       </>

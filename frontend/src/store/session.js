@@ -123,7 +123,7 @@ export const testCase = async (user) => {
   // })
 }
 
-export const showSongs = async () => {
+export const getSongs = async () => {
 
   const response = await csrfFetch("/api/songs",{
     method: "GET"

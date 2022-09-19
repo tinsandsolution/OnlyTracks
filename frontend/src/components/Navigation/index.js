@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import splash from '../../assets/dream_Kandinsky.png'
-import logo from '../../assets/otlogo2.png'
+import logo from '../../assets/running-track.png'
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -17,26 +17,25 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <div className="not-logged-in">
-          <li><NavLink to="/login">Log In</NavLink></li>
-          <li><NavLink to="/signup">Sign Up</NavLink></li>
+          <NavLink className="login-button" to="/login">Log In</NavLink>
+          <NavLink className="signup-button" to="/signup">Sign Up</NavLink>
         </div>
       </>
     );
   }
 
-  const splash = (<img src={splash} alt="splash"></img>)
+  // const splasha = (<img src={splash} alt="splash"></img>)
 
   return (
-    <>
-    <ul className='navbar'>
-      <li><img src={logo} className="navlogo" alt="logo"></img></li>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
-    {sessionUser && splash}
-    </>
+    <div className='navbar-outer'>
+      <div className='navbar-inner'>
+        <div className='nav-left'>
+          <img src={logo} className="navlogo" alt="logo"></img>
+          <NavLink exact to="/" className="reg-nav-link">Home</NavLink>
+        </div>
+        {isLoaded && sessionLinks}
+      </div>
+    </div>
   );
 }
 

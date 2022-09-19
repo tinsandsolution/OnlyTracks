@@ -1,12 +1,66 @@
-.navbar {
+.navbar-outer {
+    background-color: #2D728F;
+    display: flex;
+    justify-content: center;
+    margin: none;
+}
+
+.navbar-inner {
     list-style-type: none;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 0;
     padding: 0;
-    background-color: #1f0f53;
+    background-color: #3B8EA5;
+    max-height: 60px;
+    max-width: 1200px;
+    min-width: 1200px;
+    align-items: center;
 }
+
+.login-button {
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.signup-button {
+    color: white;
+    text-decoration: none;
+    background-color: #AB3428;
+    border-radius: 10px;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid white;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg-nav-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: small;
+    border-right: 1px solid #2D728F;
+    /* background-color: #AB3428;
+    border-radius: 10px;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid white; */
+}
+
 
 .navlogo {
     max-height: 40px;
+    /* margin-left: 50px; */
 }

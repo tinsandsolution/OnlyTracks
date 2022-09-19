@@ -6,6 +6,7 @@ import './Navigation.css';
 import splash from '../../assets/dream_Kandinsky.png'
 import logo from '../../assets/running-track.png'
 import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -19,7 +20,7 @@ function Navigation({ isLoaded }){
       <>
         <div className="not-logged-in">
           <LoginFormModal />
-          <NavLink className="signup-button" to="/signup">Sign Up</NavLink>
+          <SignupFormModal />
         </div>
       </>
     );

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     margin: none;
-    max-height: 60px;
+    height: 50px;
 }
 
 .navbar-inner {
@@ -14,7 +14,7 @@
     margin: 0;
     padding: 0;
     background-color: #3B8EA5;
-    max-height: 60px;
+    max-height: 50px;
     max-width: 1200px;
     min-width: 1200px;
     align-items: center;
@@ -25,8 +25,10 @@
     text-decoration: none;
     border-radius: 10px;
     border: 1px solid white;
-    padding: 8px;
+    padding: 10px;
     margin-right: 5px;
+    background-color: #3B8EA5;
+    font-size: 18px;
 }
 
 .signup-button {
@@ -34,8 +36,9 @@
     text-decoration: none;
     background-color: #AB3428;
     border-radius: 10px;
-    padding: 8px;
+    padding: 10px;
     margin-right: 5px;
+    font-size: 18px;
     border: 1px solid white;
 }
 
@@ -51,7 +54,7 @@
     margin-left: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    font-size: small;
+    font-size: 18px;
     border-right: 1px solid #2D728F;
     /* background-color: #AB3428;
     border-radius: 10px;
@@ -62,6 +65,6 @@
 
 
 .navlogo {
-    max-height: 40px;
-    /* margin-left: 50px; */
+    max-height: 50px;
+    margin-left: 5px;
 }

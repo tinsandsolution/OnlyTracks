@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     margin: none;
+    max-height: 60px;
 }
 
 .navbar-inner {

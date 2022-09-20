@@ -7,12 +7,14 @@
 }
 
 .profile-dropdown {
-    /* position: absolute;
-    overflow: auto; */
-    border: 1px solid blue;
+    position: absolute;
+    margin-top: 100px;
+    overflow: auto;
+    border: 30px solid white;
     display: block;
     background-color: white;
     color: white;
-    /* z-index: 1; */
+    padding: 20px 20px 20px 20px;
+    z-index: 1;
     min-width: 100px;
 }

@@ -4,15 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import * as songActions from "../../store/songs"
 
 import './SplashPreview.css'
+import {useMusic} from '../../context/MusicContext'
 // import { Redirect } from "react-router-dom";
 
 
 function SongSplashPreview(){
     const dispatch = useDispatch();
-
+    const {setPlayerSong} = useMusic()
     useEffect(()=> {
         dispatch(songActions.getSongs());
     },[dispatch])
+
+    const imgSongClick = (url) => {
+        setPlayerSong(url)
+    }
 
     // const songs = Object.values(useSelector(state => state.songs)).map(song => <li>{song.title}</li>)
     const songs = Object.values(useSelector(state => state.songs)).filter(song => song.albumId === 3)
@@ -20,7 +25,11 @@ function SongSplashPreview(){
         return (
             <div className="splash-preview-card">
                 <div className="hover-thing-card">
-                    <img className="splash-preview-image" src={song.previewImage}></img>
+                    <img className="splash-preview-image"
+                         src={song.previewImage}
+                         onClick={() => setPlayerSong(song.url)}
+                         >
+                    </img>
                     {/* <div className="play-button">▶️</div> */}
                 </div>
                 <div className="splash-song-title">{song.title}</div>

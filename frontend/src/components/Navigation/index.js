@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
     navLeft = (
       <>
       <NavLink exact to="/" className="reg-nav-link">Home</NavLink>
-      <NavLink exact to="/catalog" className="reg-nav-link">Library</NavLink>
+      {/* <NavLink exact to="/catalog" className="reg-nav-link">Library</NavLink> */}
       </>
     )
   } else {

@@ -9,6 +9,7 @@ import * as songActions from "./store/songs"
 
 import App from './App';
 import { ModalProvider } from './context/Modal';
+import MusicProvider from './context/MusicContext'
 import configureStore from './store';
 
 const store = configureStore();
@@ -26,11 +27,13 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <Provider store={store}>
+      <MusicProvider>
       <ModalProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
       </ModalProvider>
+      </MusicProvider>
     </Provider>
 
   );

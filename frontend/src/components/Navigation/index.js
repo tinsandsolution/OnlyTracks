@@ -12,6 +12,7 @@ function Navigation({ isLoaded }){
 
   let sessionLinks;
   let splashStuff;
+  let navLeft
   if (sessionUser) {
     sessionLinks = (
       <div className='nav-right-side'>
@@ -19,6 +20,12 @@ function Navigation({ isLoaded }){
       <ProfileButton user={sessionUser} />
       </div>
     );
+    navLeft = (
+      <>
+      <NavLink exact to="/" className="reg-nav-link">Home</NavLink>
+      <NavLink exact to="/catalog" className="reg-nav-link">Library</NavLink>
+      </>
+    )
   } else {
     sessionLinks = (
       <>
@@ -32,7 +39,8 @@ function Navigation({ isLoaded }){
       <div id='splash'>
         {sessionUser ? '' : <img src={splash} alt="splash" className='splash-image'></img>}
         <p className='splash-welcome'>Check Out Our Selection Of Legal Music!</p>
-        <p> place component here </p>
+        <span id='splash-upload'><LoginFormModal isSplash="true"/></span>
+        <p></p>
       </div>
     )
   }
@@ -45,8 +53,7 @@ function Navigation({ isLoaded }){
       <div className='navbar-inner'>
         <div className='nav-left'>
           <img src={logo} className="navlogo" alt="logo"></img>
-          <NavLink exact to="/" className="reg-nav-link">Home</NavLink>
-          <NavLink exact to="/catalog" className="reg-nav-link">Library</NavLink>
+          {navLeft}
         </div>
         {isLoaded && sessionLinks}
       </div>

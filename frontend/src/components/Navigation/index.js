@@ -7,6 +7,7 @@ import splash from '../../assets/robots-dancing-2.png'
 import logo from '../../assets/running-track-inverted-color.png'
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import SongSplashPreview from '../SplashPreview';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -40,7 +41,7 @@ function Navigation({ isLoaded }){
         {sessionUser ? '' : <img src={splash} alt="splash" className='splash-image'></img>}
         <p className='splash-welcome'>Check Out Our Selection Of Legal Music!</p>
         <span id='splash-upload'><LoginFormModal isSplash="true"/></span>
-        <p></p>
+        <SongSplashPreview />
       </div>
     )
   }

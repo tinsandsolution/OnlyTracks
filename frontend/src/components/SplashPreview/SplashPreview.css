@@ -1,0 +1,28 @@
+.splash-preview-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 50px;
+}
+
+.splash-preview-card {
+    width: 150px;
+    height: 200px;
+    list-style-type: none;
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+}
+
+.splash-preview-card > img {
+    width: 150px;
+    height: max-content;
+    /* list-style-type: none; */
+}
+
+.splash-song-title {
+    font-size: 14px;
+}
+
+.splash-song-description {
+    font-size: 12px;
+}

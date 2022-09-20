@@ -38,8 +38,8 @@ export const getSongs = () => async (dispatch) => {
   })
 
   const data = await response.json()
-  console.log("printing song data")
-  console.log(data)
+  // console.log("printing song data")
+  // console.log(data)
   dispatch(loadSongs(data))
   // console.log("test")
   return data

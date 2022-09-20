@@ -1,4 +1,4 @@
-form {
+.form-submit {
     display: flex;
     flex-direction: column;
     font-family: "Arial";
@@ -10,7 +10,7 @@ form {
     height: 200px;
 }
 
-input {
+.input-submit-song {
     border-radius: 5px;
     border-width: 0.1px;
     margin: 1px;
@@ -19,7 +19,7 @@ input {
 
 }
 
-button {
+.button-submit-song {
     width: 208px;
     height: 50px;
     background-color: #0acdffff;

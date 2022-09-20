@@ -6,7 +6,7 @@ import * as songActions from "./store/songs"
 import Navigation from "./components/Navigation";
 import SongSubmitPage from "./components/SongSubmitPage";
 import SongReadPage from "./components/SongReadPage"
-
+import OnlyPlayer from "./components/AudioPlayer"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +29,10 @@ function App() {
             <SongReadPage />
           </Route>
         </Switch>
+
       )}
+      <OnlyPlayer />
+      <div className="blank-space-for-player"></div>
     </>
   );
 }

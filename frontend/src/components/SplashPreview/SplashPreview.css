@@ -13,12 +13,16 @@
     padding: 10px 10px 10px 10px;
 }
 
-.splash-preview-card > img {
+.splash-preview-image {
     width: 150px;
     height: max-content;
+    cursor: pointer;
     /* list-style-type: none; */
 }
 
+.hover-thing-card {
+    position: relative;
+}
 .splash-song-title {
     font-size: 14px;
 }

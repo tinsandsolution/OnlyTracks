@@ -53,7 +53,7 @@ function Navigation({ isLoaded }){
     <div className='navbar-outer'>
       <div className='navbar-inner'>
         <div className='nav-left'>
-          <img src={logo} className="navlogo" alt="logo"></img>
+          <NavLink exact to="/"><img src={logo} className="navlogo" alt="logo"></img></NavLink>
           {navLeft}
         </div>
         {isLoaded && sessionLinks}

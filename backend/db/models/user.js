@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Song, { sourceKey: 'id', foreignKey: 'userId' })
       User.hasMany(models.Album, { sourceKey: 'id', foreignKey: 'userId' })
-      // User.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'userId' })
+      User.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'userId' })
     }
   };
 

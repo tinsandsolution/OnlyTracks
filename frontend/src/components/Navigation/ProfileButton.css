@@ -1,9 +1,9 @@
 .dropdown {
     position: relative;
-    display: inline-block;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
+    /* display: ; */
+    /* height: 100px; */
+    /* display: flex; */
+    /* flex-direction: column; */
 }
 
 .profile-dropdown {

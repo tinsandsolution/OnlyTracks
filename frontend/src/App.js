@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import SongSubmitPage from "./components/SongSubmitPage";
 import SongReadPage from "./components/SongReadPage"
 import OnlyPlayer from "./components/AudioPlayer"
+import HomePage from "./components/HomePage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,7 +34,7 @@ function App() {
         </Switch>
 
       )}
-      {sessionUser && (<div>hi</div>)}
+      {sessionUser && (<HomePage />)}
       <OnlyPlayer />
       <div className="blank-space-for-player"></div>
     </>

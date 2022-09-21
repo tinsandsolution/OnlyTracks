@@ -1,0 +1,48 @@
+.homepage-container {
+    max-width: 1200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.homepage-song-container {
+    height: 230px;
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    margin-left: 0px;
+    overflow-x: scroll;
+}
+
+.homepage-preview-card {
+    width: 150px;
+    height: 200px;
+    list-style-type: none;
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+}
+
+.homepage-card-song-title {
+    font-size: 14px;
+}
+
+.homepage-song-description {
+    font-size: 12px;
+}
+
+.homepage-playlist-name {
+    font-size: 20px;
+}
+
+.homepage-playlist-desc {
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
+}
+
+/* my css organization sucks. refer to splashpreview on how to handle this */
+/* .hover-thing-card {
+    position: relative;
+} */

@@ -42,3 +42,8 @@
     list-style-type: none;
     color: red;
 }
+
+.modal-form > ul > li {
+    list-style-type: none;
+    color: red;
+}

@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 // import * as songActions from "./store/songs"
 import Navigation from "./components/Navigation";
-import SongSubmitPage from "./components/SongSubmitPage";
+import SongSubmitPage from "./components/SongSubmitModal";
 import SongReadPage from "./components/SongReadPage"
 import OnlyPlayer from "./components/AudioPlayer"
 import HomePage from "./components/HomePage";
@@ -29,15 +29,15 @@ function App() {
           <Route exact path="/">
             {sessionUser && <HomePage />}
           </Route>
-          <Route path="/upload">
+          {/* <Route path="/upload">
             <SongSubmitPage />
-          </Route>
+          </Route> */}
           <Route path="/songs/:songId">
             <SongPage />
           </Route>
-          <Route path="/catalog">
+          {/* <Route path="/catalog">
             <SongReadPage />
-          </Route>
+          </Route> */}
         </Switch>
 
       )}

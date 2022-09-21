@@ -66,7 +66,7 @@ router.post(
       err.errors = errors;
       err.status = 403;
       err.title = 'Bad signup request';
-      next(err)
+      return res.status(403).json(err)
     }
 
     let user = await User.signup({ email, username, password, firstName, lastName, previewImage });

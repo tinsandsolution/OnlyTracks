@@ -23,6 +23,8 @@ function SongManageFormPage({song, setShowModal}) {
       const errors = [];
 
       const musicRe = /.*\.mp3$/;
+      if (title.length > 250) errors.push("Please make your title shorter")
+      if (description.length > 250) errors.push("Please make your description Shorter")
       if (!file.match(musicRe)) errors.push("Audio file needs to be an .mp3")
       if (!previewImage.match(/.*\.(jpg|png|bmp|jpeg)$/)) errors.push("Image needs to be a .jpg, .png, .bmp, or a .jpeg")
       setErrors(errors)

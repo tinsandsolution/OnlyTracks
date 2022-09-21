@@ -39,7 +39,7 @@ function SongSplashPreview(){
             </div>
         )
     })
-    console.log(songs)
+    // console.log(songs)
 
     return (
         <>

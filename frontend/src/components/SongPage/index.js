@@ -4,30 +4,43 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import * as songActions from "../../store/songs"
 import {useMusic} from '../../context/MusicContext'
-// import { Redirect } from "react-router-dom";
-
+import { Redirect, useParams } from "react-router-dom";
+import SongManageModal from "../SongManageModal"
 function SongPage(){
     const dispatch = useDispatch();
     const {setPlayerSong} = useMusic()
+    let { songId } = useParams();
+    const sessionUserId = useSelector((state) => state.session.user).id
+    const songs = Object.values(useSelector(state => state.songs))//.find(song => song.id === songId)
+    const [song, setSong] = useState(songs.find(song => +song.id === +songId))
+
+    //console.log(sessionUserId)
+
+    // console.log("id", songId)
     useEffect(()=> {
         dispatch(songActions.getSongs());
     },[dispatch])
 
-    const songs = Object.values(useSelector(state => state.songs)).filter((song)=>{
-        return !badTracks.includes(song.title)
+    useEffect(()=> {
+        // const songs = Object.values(useSelector(state => state.songs))
+        setSong(songs.find(song => +song.id === +songId))
     })
 
+    // const song = songs.find(song => +song.id === +songId)
+    //console.log(song[0])
+    // console.log(song)
     return (
-        <>
-        <div className='homepage-container'>
-            <div className='homepage-playlist-name'>Electronic Music That's Less Than A Minute</div>
-            <div className='homepage-playlist-desc'>Great for when you're in a rush or hate electronic music</div>
-            <div className="homepage-song-container">
-                {cards}
-            </div>
+        <div className='mass-container'>
+        <p>{song.id}</p>
+        <p>{song.title}</p>
+        <p>{song.description}</p>
+        <p>{song.url}</p>
+        <p>{song.previewImage}</p>
+        <p></p>
+        {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
+        {/* {<SongManageModal song={song}/>} */}
         </div>
-        </>
     )
 }
 
-export default HomePage;
+export default SongPage;

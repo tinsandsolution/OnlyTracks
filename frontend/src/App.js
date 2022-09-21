@@ -8,6 +8,7 @@ import SongSubmitPage from "./components/SongSubmitPage";
 import SongReadPage from "./components/SongReadPage"
 import OnlyPlayer from "./components/AudioPlayer"
 import HomePage from "./components/HomePage";
+import SongPage from "./components/SongPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,8 +26,14 @@ function App() {
           {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}
+          <Route exact path="/">
+            {sessionUser && <HomePage />}
+          </Route>
           <Route path="/upload">
             <SongSubmitPage />
+          </Route>
+          <Route path="/songs/:songId">
+            <SongPage />
           </Route>
           <Route path="/catalog">
             <SongReadPage />
@@ -34,7 +41,7 @@ function App() {
         </Switch>
 
       )}
-      {sessionUser && (<HomePage />)}
+      {/* {sessionUser && (<HomePage />)} */}
       <OnlyPlayer />
       <div className="blank-space-for-player"></div>
     </>

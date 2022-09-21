@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import * as songActions from "../../store/songs"
 import {useMusic} from '../../context/MusicContext'
-// import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const badTracks = [
     "Last Great American Dynasty",
@@ -44,7 +44,9 @@ function HomePage(){
                     </img>
                     {/* <div className="play-button">▶️</div> */}
                 </div>
-                <div className="homepage-card-song-title">{song.title}</div>
+                <div className="homepage-card-song-title">
+                    <NavLink className="homepage-card-song-title" to={"/songs/"+song.id}>{song.title}</NavLink>
+                </div>
                 {/* so uh, we never got around to making artists for this because a user is an artist. */}
                 {/* maybe a workaround could be to seed more artists? */}
                 <div className="homepage-song-description">{song.description} Lorem Ipsum</div>

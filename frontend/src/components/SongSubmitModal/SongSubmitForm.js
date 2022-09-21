@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/songs";
 import './SongSubmitForm.css';
 
-function SongSubmitPage() {
+function SongSubmitForm({setShowModal}) {
     const dispatch = useDispatch();
     const history = useHistory()
     const [title, setTitle] = useState("");
@@ -18,28 +18,43 @@ function SongSubmitPage() {
         const errors = [];
 
         const musicRe = /.*\.mp3$/;
+        if (title.length > 250) errors.push("Please make your title shorter")
+        if (description.length > 250) errors.push("Please make your description Shorter")
         if (!file.match(musicRe)) errors.push("Audio file needs to be an .mp3")
         if (!previewImage.match(/.*\.(jpg|png|bmp|jpeg)$/)) errors.push("Image needs to be a .jpg, .png, .bmp, or a .jpeg")
         setErrors(errors)
     },[file, previewImage])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(sessionActions.addSong({title, description, file, previewImage}))
+        let newSongId = null
+        let item = await dispatch(sessionActions.addSong({title, description, file, previewImage}))
             .catch(async (res) => {
+
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data && data.errors) {
+                  console.log("this hits")
+                  setErrors(data.errors);
+                }
+                else {
+                  return("this hits")
+                }
+                // else newSongId = data.id
             });
-        history.push("/")
+        console.log("homm", item)
+        if (!errors.length) {
+          setShowModal(false)
+          // history.push(`/songs/${newSongId}`)
+        }
     }
 
     return (
       <>
-      <form onSubmit={handleSubmit}>
+      <form className="modal-form"onSubmit={handleSubmit}>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         <label>
-          Song Title
+          Song Title <br />
           <input
             type="text"
             value={title}
@@ -48,7 +63,7 @@ function SongSubmitPage() {
           />
         </label>
         <label>
-          Description
+          Description <br />
           <input
             type="textarea"
             value={description}
@@ -57,7 +72,7 @@ function SongSubmitPage() {
           />
         </label>
         <label>
-            Song File
+            Song File<br />
           <input
             type="text" value={file}
             onChange={(e) => setFile(e.target.value)}
@@ -65,17 +80,17 @@ function SongSubmitPage() {
           />
         </label>
         <label>
-            Song Image
+            Song Image <br />
           <input
             type="text" value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
             required
           />
         </label>
-        <button type="submit" disabled={errors.length ? true : false}>Create New Track</button>
+        <button type="submit" disabled={errors.length ? true : false}>{errors.length ? "Invalid" : "Create New Track"}</button>
       </form>
       </>
     );
   }
 
-export default SongSubmitPage;
+export default SongSubmitForm;

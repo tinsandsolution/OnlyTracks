@@ -7,6 +7,7 @@ import splash from '../../assets/robots-dancing-2.png'
 import logo from '../../assets/running-track-inverted-color.png'
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import SongSubmitModal from '../SongSubmitModal';
 import SongSplashPreview from '../SplashPreview';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -17,7 +18,8 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <div className='nav-right-side'>
-      <NavLink exact to="/upload" className="reg-nav-link">Upload</NavLink>
+      {/* <NavLink exact to="/upload" className="reg-nav-link">Upload</NavLink> */}
+      <SongSubmitModal />
       <ProfileButton user={sessionUser} />
       </div>
     );

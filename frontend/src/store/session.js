@@ -61,6 +61,7 @@ const sessionReducer = (state = initialState, action) => {
 // signup
 export const signup = (user) => async (dispatch) => {
     const { username, email, password, firstName, lastName, previewImage } = user;
+    // console.log("well, at least we got here")
     const response = await csrfFetch("/api/users/", {
       method: "POST",
       body: JSON.stringify({
@@ -72,8 +73,12 @@ export const signup = (user) => async (dispatch) => {
         previewImage
       }),
     });
+    // console.log("test")
+    //console.log(response.json())
+    // console.log("well, at least wde got the response")
     const data = await response.json();
-    dispatch(setUser(data.user));
+    // console.log("here is the response", data)
+    if(!data.errors) dispatch(setUser(data.user));
     return response;
   };
 

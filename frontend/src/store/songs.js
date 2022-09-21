@@ -34,8 +34,8 @@ const songReducer = (state = initialState, action) => {
       // console.log(action.songs)
       return { ...state, ...action.songs.songs};
     case ADD_SONG:
-      console.log("asfddsafadsfasdfdasf")
-      console.log(state)
+      // console.log("asfddsafadsfasdfdasf")
+      // console.log(state)
       return state
     default:
       return state;
@@ -86,6 +86,7 @@ export const addSong = (user) => async (dispatch) => {
 
     const data2 = await response2.json();
     dispatch(loadSongs(data2))
+    // console.log("here is data2", data2)
     //again you don't actually need to reload anything
     return response2;
 

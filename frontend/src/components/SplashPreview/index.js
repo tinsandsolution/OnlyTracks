@@ -35,7 +35,7 @@ function SongSplashPreview(){
                 <div className="splash-song-title">{song.title}</div>
                 {/* so uh, we never got around to making artists for this because a user is an artist. */}
                 {/* maybe a workaround could be to seed more artists? */}
-                <div className="splash-song-description">{song.description} Lorem Ipsum</div>
+                <div className="splash-song-description">{song.description === "" || song.description === null ? "Lorem Ipsum" : song.description }</div>
             </div>
         )
     })

@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import * as songActions from "../../store/songs"
 import {useMusic} from '../../context/MusicContext'
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import SongManageModal from "../SongManageModal"
 function SongPage(){
     const dispatch = useDispatch();
     const {setPlayerSong} = useMusic()
+    const history = useHistory()
     let { songId } = useParams();
+    const sessionUser = useSelector(state => state.session.user);
+    if (!sessionUser) history.push("/")
+
     const sessionUserId = useSelector((state) => state.session.user).id
     const songs = Object.values(useSelector(state => state.songs))//.find(song => song.id === songId)
     const [song, setSong] = useState(songs.find(song => +song.id === +songId))

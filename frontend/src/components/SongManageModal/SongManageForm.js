@@ -51,6 +51,31 @@ function SongManageFormPage({song, setShowModal}) {
       //     });
   }
 
+  const handleDelete = async (e) => {
+    // e.preventDefault();
+    // setErrors([]);
+    // let updatedSong = await dispatch(songActions.editSong({title, description, file, previewImage, songId}))
+    // // console.log("fasdfasd" , updatedSong)
+    // // console.log("fasdfdsafasdsa" , updatedSong.statusText)
+    // if (updatedSong.statusText === "OK") {
+    //   // console.log("happening")
+    //   setShowModal(false)
+    //   //console.log("happening")
+    // }
+    // return dispatch(songActions.editSong({title, description, file, previewImage, songId}))
+    //     .catch(async (res) => {
+    //         const data = await res.json();
+    //         console.log("afasdfasdsa")
+    //         if (data && data.errors) setErrors(data.errors);
+    //         else {
+    //           console.log("happening")
+    //           history.push(`/songs/${songId}`)
+    //         }
+    //     });
+    console.log("attempting to delete")
+    history.push("/")
+ }
+
   return (
     <>
     <form onSubmit={handleSubmit}>
@@ -91,6 +116,7 @@ function SongManageFormPage({song, setShowModal}) {
       </label>
       <button type="submit" disabled={errors.length ? true : false}>Update Track</button>
     </form>
+    <button type="delete" onClick={handleDelete}>Delete Song (Irreversible)</button>
     </>
   );
 }

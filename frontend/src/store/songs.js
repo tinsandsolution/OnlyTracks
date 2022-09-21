@@ -100,6 +100,19 @@ export const addSong = (user) => async (dispatch) => {
     // })
   }
 
+  export const deleteSong = (data) => async (dispatch) => {
+    const {songId} = data
+
+    const response = await csrfFetch(`/api/songs/${songId}`, {
+      method: "DELETE",
+    });
+
+    const data2 = await response.json();
+    // console.log("trying to get all songs again")
+    dispatch(getSongs())// dispatch(loadSongs(data2))
+    //again you don't actually need to reload anything
+    return response;
+  }
 
   export const editSong = (data) => async (dispatch) => {
     console.log("editSong")

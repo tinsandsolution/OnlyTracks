@@ -102,6 +102,22 @@
     border: 1px solid white; */
 }
 
+.reg-nav-link-rightmost {
+    color: #cccccc;
+    text-decoration: none;
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    /* border-right: 1px solid #cccccc; */
+    /* background-color: #AB3428;
+    border-radius: 10px;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid white; */
+}
+
+
 .upload-nav-link {
     border: none;
 }

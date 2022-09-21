@@ -28,22 +28,29 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  // return (
+  //   <div className="dropdown">
+  //     <button onClick={openMenu}>
+  //        <i className="fas fa-user-circle" />
+  //     </button>
+  //     {showMenu && (
+  //       <div className="profile-dropdown">
+  //         {/* <li>{user.username}</li>
+  //         <li>{user.email}</li> */}
+  //         <p></p>
+  //         <p></p>
+  //         <p></p>
+  //         <button onClick={logout}>Log Out</button>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
   return (
-    <div className="dropdown">
-      <button onClick={openMenu}>
-         <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <div className="profile-dropdown">
-          {/* <li>{user.username}</li>
-          <li>{user.email}</li> */}
-          <p></p>
-          <p></p>
-          <p></p>
-          <button onClick={logout}>Log Out</button>
-        </div>
-      )}
-    </div>
+    <div className="profile-dropdown">
+    {/* <li>{user.username}</li>
+    <li>{user.email}</li> */}
+    <div className="reg-nav-link-rightmost" onClick={logout}>Log Out</div>
+  </div>
   );
 }
 

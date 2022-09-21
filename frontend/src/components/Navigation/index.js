@@ -17,7 +17,7 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <div className='nav-right-side'>
-      <NavLink exact to="/upload" className="reg-nav-link upload-nav-link">Upload</NavLink>
+      <NavLink exact to="/upload" className="reg-nav-link">Upload</NavLink>
       <ProfileButton user={sessionUser} />
       </div>
     );

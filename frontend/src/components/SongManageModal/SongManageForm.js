@@ -78,10 +78,10 @@ function SongManageFormPage({song, setShowModal}) {
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="modal-form">
       {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       <label>
-        Song Title
+        Song Title <br />
         <input
           type="text"
           value={title}
@@ -90,7 +90,7 @@ function SongManageFormPage({song, setShowModal}) {
         />
       </label>
       <label>
-        Description
+        Description <br />
         <input
           type="textarea"
           value={description}
@@ -99,7 +99,7 @@ function SongManageFormPage({song, setShowModal}) {
         />
       </label>
       <label>
-          Song File
+          Song File <br />
         <input
           type="text" value={file}
           onChange={(e) => setFile(e.target.value)}
@@ -107,7 +107,7 @@ function SongManageFormPage({song, setShowModal}) {
         />
       </label>
       <label>
-          Song Image
+          Song Image <br />
         <input
           type="text" value={previewImage}
           onChange={(e) => setPreviewImage(e.target.value)}
@@ -115,8 +115,8 @@ function SongManageFormPage({song, setShowModal}) {
         />
       </label>
       <button type="submit" disabled={errors.length ? true : false}>Update Track</button>
+      <button type="delete" onClick={handleDelete}>Delete Song (Irreversible)</button>
     </form>
-    <button type="delete" onClick={handleDelete}>Delete Song (Irreversible)</button>
     </>
   );
 }

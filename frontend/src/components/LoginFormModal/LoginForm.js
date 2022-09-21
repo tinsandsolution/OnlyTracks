@@ -32,13 +32,13 @@ function LoginForm() {
 
   return (
     <>
-    <button onClick={demoUser}>Demo User</button>
-    <form onSubmit={handleSubmit}>
+    <form className="modal-form"onSubmit={handleSubmit}>
+      <button onClick={demoUser}>Demo User</button>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
-        Username or Email
+        Username or Email<br />
         <input
           type="text"
           value={credential}
@@ -47,7 +47,7 @@ function LoginForm() {
         />
       </label>
       <label>
-        Password
+        Password <br />
         <input
           type="password"
           value={password}

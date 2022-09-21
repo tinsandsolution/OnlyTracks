@@ -3,7 +3,42 @@
     height: 100px;
 }
 
+* {
+    font-family: Roboto;
+}
+
 .mass-container {
     max-width: 1200px;
     margin: auto;
+}
+
+.modal-form {
+    min-width: 300px;
+    max-width: 400px;
+    /* min-height: 400px; */
+    max-height: 600px;
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form > label > input {
+    width: 300px;
+    height: 20px;
+    font-size: 16px;
+    border: 1px gray solid;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.modal-form > button {
+    color: white;
+    background-color: #29335C;
+    height: 30px;
+    margin: 5px 0px 5px 0px;
+}
+
+.modal-form > li {
+    list-style-type: none;
+    color: red;
 }

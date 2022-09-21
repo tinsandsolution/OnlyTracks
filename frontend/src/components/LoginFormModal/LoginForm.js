@@ -27,7 +27,7 @@ function LoginForm() {
   }
 
   const demoUser = (e) => {
-    return dispatch(sessionActions.login({credential : "Demo-lition", password : "password" }))
+    return dispatch(sessionActions.login({credential : 'Demo-lition', password : 'password' }))
   }
 
   return (

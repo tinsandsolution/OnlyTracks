@@ -17,9 +17,9 @@ const badTracks = [
     "33sfsdfa234df",
     "testdfsf",
     "testsafasd",
-    "testsetsfdsf"
+    "testsetsfdsf",
+    "ghfhdfhfdhdgfh"
 ]
-
 function HomePage(){
     const dispatch = useDispatch();
     const {setPlayerSong} = useMusic()

@@ -2,14 +2,22 @@ import { csrfFetch } from './csrf';
 
 // actions
 const LOAD_SONGS = 'session/loadSongs'
+const ADD_SONG = 'session/addSong'
 
 const loadSongs = (songs) => {
+  //you don't actually need to pass in songs but we'll keep it here because i'm lazy
     return {
       type: LOAD_SONGS,
       songs
     }
   }
 
+const uploadSong = (song) => {
+    return {
+      type: ADD_SONG,
+      song
+    }
+}
 // reducers
 const initialState = [];
 
@@ -23,6 +31,10 @@ const songReducer = (state = initialState, action) => {
       // so what you want to do is basically just get the songs part of that
       // console.log(action.songs)
       return { ...state, ...action.songs.songs};
+    case ADD_SONG:
+      console.log("asfddsafadsfasdfdasf")
+      console.log(state)
+      return state
     default:
       return state;
   }
@@ -49,7 +61,7 @@ export const getSongs = () => async (dispatch) => {
 
 
 // should be renamed to add song
-export const addSong = async (user) => {
+export const addSong = (user) => async (dispatch) => {
     const {title, description, file, previewImage} = user
     const response = await csrfFetch("/api/users/current", {
       method: "GET"
@@ -69,8 +81,10 @@ export const addSong = async (user) => {
         previewImage
       }),
     });
-    //const data2 = await response2.json();
-    //dispatch(setUser(data.user));
+
+    const data2 = await response2.json();
+    dispatch(loadSongs(data2))
+    //again you don't actually need to reload anything
     return response2;
 
 

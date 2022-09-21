@@ -33,6 +33,9 @@ function SongPage(){
     // const song = songs.find(song => +song.id === +songId)
     //console.log(song[0])
     // console.log(song)
+    console.log("hey")
+    // songActions.checkAlbum()
+
     return (
         <div className='mass-container'>
         <p>{song.id}</p>

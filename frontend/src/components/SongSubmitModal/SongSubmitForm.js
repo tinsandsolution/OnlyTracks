@@ -34,11 +34,11 @@ function SongSubmitForm({setShowModal}) {
 
                 const data = await res.json();
                 if (data && data.errors) {
-                  console.log("this hits")
+                  // console.log("this hits")
                   setErrors(data.errors);
                 }
                 else {
-                  return("this hits")
+                  return data
                 }
                 // else newSongId = data.id
             });

@@ -63,6 +63,41 @@ export const getSongs = () => async (dispatch) => {
 
 
 // should be renamed to add song
+export const checkAlbum = async () => {
+  // get the current user
+  const response = await csrfFetch("/api/users/current", {
+    method: "GET"
+  });
+  const data = await response.json()
+  const userId = data.id
+
+  //figure out if the user has an album
+  const response2 = await csrfFetch("/api/albums")
+  const data2 = await response2.json()
+  // console.log(typeof data2.Albums)
+  const found = data2.Albums.find(album => album.userId === userId)
+  //console.log(found)
+  // console.log((found === undefined))
+  if (found) {
+    // console.log("blah")
+    return found.id
+  }
+  else if ((found === undefined)) {
+    const response3 = await csrfFetch("/api/albums", {
+      method: "POST",
+      body: JSON.stringify({
+        title : "Generic"
+      }),
+    })
+    const data3 = await response3.json()
+    // console.log(data3)
+    return data3.id
+  }
+    //if does, return album id
+    //if not, create an album
+      //then return album id
+}
+
 export const addSong = (user) => async (dispatch) => {
     const {title, description, file, previewImage} = user
     const response = await csrfFetch("/api/users/current", {
@@ -73,7 +108,7 @@ export const addSong = (user) => async (dispatch) => {
     const userId = data.id
     const albumId = 1
     const url = file
-    const response2 = await csrfFetch("/api/albums/1", {
+    const response2 = await csrfFetch(`/api/albums/1`, {
       method: "POST",
       body: JSON.stringify({
         albumId,

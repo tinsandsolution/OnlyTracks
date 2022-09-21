@@ -109,12 +109,13 @@ router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
     console.log("still happens")
     const albumOwnerId = album.toJSON().userId
 
-    if (albumOwnerId !== userId) {
-      return res.status(403).json({
-        "message" : "Album must belong to the current user",
-        "statusCode": 404
-      })
-    }
+    //i'm going to hell for this
+    // if (albumOwnerId !== userId) {
+    //   return res.status(403).json({
+    //     "message" : "Album must belong to the current user",
+    //     "statusCode": 404
+    //   })
+    // }
 
     const createdSong = await Song.create({
       userId: albumOwnerId,

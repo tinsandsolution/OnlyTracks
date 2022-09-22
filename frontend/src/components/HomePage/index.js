@@ -10,7 +10,7 @@ const badTracks = [
     "Last Great American Dynasty",
     "Look What You Made Me Do",
     "Call Me Maybe",
-    "test",
+    // "test",
     "test2",
     "test3",
     "33sfsdfa234",
@@ -23,6 +23,7 @@ const badTracks = [
 function HomePage(){
     const dispatch = useDispatch();
     const {setPlayerSong} = useMusic()
+
     useEffect(()=> {
         dispatch(songActions.getSongs());
     },[dispatch])
@@ -49,7 +50,7 @@ function HomePage(){
                 </div>
                 {/* so uh, we never got around to making artists for this because a user is an artist. */}
                 {/* maybe a workaround could be to seed more artists? */}
-                <div className="homepage-song-description">{song.description} Lorem Ipsum</div>
+                <div className="homepage-song-description">{song.description}</div>
             </div>
         )
     })

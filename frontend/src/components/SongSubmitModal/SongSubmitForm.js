@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import * as sessionActions from "../../store/songs";
+import * as songActions from "../../store/songs";
 import './SongSubmitForm.css';
 
 function SongSubmitForm({setShowModal}) {
@@ -18,6 +18,7 @@ function SongSubmitForm({setShowModal}) {
         const errors = [];
 
         const musicRe = /.*\.mp3$/;
+        if (!title.length) errors.push("Title must be greater than three characters")
         if (title.length > 250) errors.push("Please make your title shorter")
         if (description.length > 250) errors.push("Please make your description Shorter")
         if (!file.match(musicRe)) errors.push("Audio file needs to be an .mp3")
@@ -29,23 +30,27 @@ function SongSubmitForm({setShowModal}) {
         e.preventDefault();
         setErrors([]);
         let newSongId = null
-        let item = await dispatch(sessionActions.addSong({title, description, file, previewImage}))
+        let item = await dispatch(songActions.addSong({title, description, file, previewImage}))
             .catch(async (res) => {
-
+                console.log("fasdfasdf")
                 const data = await res.json();
                 if (data && data.errors) {
                   console.log("this hits")
                   setErrors(data.errors);
+                  return("this hits")
                 }
                 else {
-                  return("this hits")
+                  return("this hits2")
                 }
                 // else newSongId = data.id
             });
-        console.log("homm", item)
+        console.log("homm", item.songId)
         if (!errors.length) {
+          console.log("apparently there's no errors")
+          // console.log(`/songs/${newSongId}`)
+          await dispatch(songActions.getSongs())
+          history.push(`/songs/${item.songId}`)
           setShowModal(false)
-          // history.push(`/songs/${newSongId}`)
         }
     }
 

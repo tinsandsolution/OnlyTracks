@@ -23,13 +23,13 @@ function SongPage(){
     // console.log("id", songId)
     useEffect(()=> {
         dispatch(songActions.getSongs());
-    },[dispatch])
+    },[])
 
     useEffect(()=> {
         // const songs = Object.values(useSelector(state => state.songs))
         setSong(songs.find(song => +song.id === +songId))
     })
-
+    console.log(sessionUserId, song.userId)
     // const song = songs.find(song => +song.id === +songId)
     //console.log(song[0])
     // console.log(song)

@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 const LOAD_SONGS = 'session/loadSongs'
 const ADD_SONG = 'session/addSong'
 const EDIT_SONG= 'session/editSong'
+const REMOVE_SONG = "session/removeSong"
 
 const loadSongs = (songs) => {
   //you don't actually need to pass in songs but we'll keep it here because i'm lazy
@@ -20,6 +21,13 @@ const uploadSong = (song) => {
     }
 }
 
+const removeSong = (songId) => {
+  return {
+    type: REMOVE_SONG,
+    songId
+  }
+}
+
 // reducers
 const initialState = [];
 
@@ -32,11 +40,19 @@ const songReducer = (state = initialState, action) => {
       // songs:
       // so what you want to do is basically just get the songs part of that
       // console.log(action.songs)
-      return { ...state, ...action.songs.songs};
+      // console.log("damn")
+      // console.log("damn" ,{...action.songs.songs})
+      // console.log({ ...state, ...action.songs.songs})
+      return {...action.songs.songs};
     case ADD_SONG:
       // console.log("asfddsafadsfasdfdasf")
       // console.log(state)
-      return state
+      return {...state, ...action.song}
+    case REMOVE_SONG:
+      console.log("here is the remove song", state)
+      console.log(action.songId)
+      const newState = Object.values(state).filter(song => song.id !== action.songId)
+      return {...newState}
     default:
       return state;
   }
@@ -52,6 +68,7 @@ export const getSongs = () => async (dispatch) => {
   })
 
   const data = await response.json()
+  // console.log("fasdfdasfasdfads", data)
   // console.log("printing song data")
   // console.log(data)
   dispatch(loadSongs(data))
@@ -71,6 +88,7 @@ export const addSong = (user) => async (dispatch) => {
     const data = await response.json()
 
     const userId = data.id
+    console.log("current user id", data.id)
     const albumId = 1
     const url = file
     const response2 = await csrfFetch("/api/albums/1", {
@@ -80,12 +98,16 @@ export const addSong = (user) => async (dispatch) => {
         title,
         description,
         url,
+        userId,
         previewImage
       }),
     });
 
     const data2 = await response2.json();
-    dispatch(loadSongs(data2))
+    // console.log("fadsfasdf", data2)
+    dispatch(uploadSong(data2))
+    response2.songId = data2.id
+    // console.log(data2)
     // console.log("here is data2", data2)
     //again you don't actually need to reload anything
     return response2;
@@ -104,13 +126,14 @@ export const addSong = (user) => async (dispatch) => {
   export const deleteSong = (data) => async (dispatch) => {
     const {songId} = data
 
+    console.log("attempting to delete from songs.js")
     const response = await csrfFetch(`/api/songs/${songId}`, {
       method: "DELETE",
     });
 
     const data2 = await response.json();
     // console.log("trying to get all songs again")
-    dispatch(getSongs())// dispatch(loadSongs(data2))
+    dispatch(removeSong(songId))// dispatch(loadSongs(data2))
     //again you don't actually need to reload anything
     return response;
   }

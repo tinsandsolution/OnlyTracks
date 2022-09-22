@@ -63,6 +63,15 @@ const commentReducer = (state = initialState, action) => {
 
 // // AHHHHHH
 
+export const getComments = (songId) = async (dispatch) => {
+    const response = await csrfFetch(`/api/${songId}/comments`,{
+        method: "GET"
+    });
+    const data = await response.json()
+
+
+
+}
 
 // // should be renamed to add song
 // export const checkAlbum = async () => {

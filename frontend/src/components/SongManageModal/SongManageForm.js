@@ -54,7 +54,7 @@ function SongManageFormPage({song, setShowModal}) {
   }
 
   const handleDelete = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     // setErrors([]);
     // let updatedSong = await dispatch(songActions.editSong({title, description, file, previewImage, songId}))
     // // console.log("fasdfasd" , updatedSong)
@@ -64,16 +64,7 @@ function SongManageFormPage({song, setShowModal}) {
     //   setShowModal(false)
     //   //console.log("happening")
     // }
-    // return dispatch(songActions.editSong({title, description, file, previewImage, songId}))
-    //     .catch(async (res) => {
-    //         const data = await res.json();
-    //         console.log("afasdfasdsa")
-    //         if (data && data.errors) setErrors(data.errors);
-    //         else {
-    //           console.log("happening")
-    //           history.push(`/songs/${songId}`)
-    //         }
-    //     });
+    dispatch(songActions.deleteSong({songId}))
     console.log("attempting to delete")
     history.push("/")
  }

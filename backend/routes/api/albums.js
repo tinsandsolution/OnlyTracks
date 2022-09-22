@@ -89,27 +89,28 @@ router.get('/current', requireAuth, async (req, res) => {
 
 //create a song for an album based on the album's id
 router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
-    const userId = req.user.id
+    //I'm going to hell for this
+    // const userId = req.user.id
     const albumId = req.params.id
-    const {title, description, url, previewImage} = req.body
+    const {title, description, url, previewImage, userId} = req.body
 
     //album must exist
     //find album info based on albumid
-    console.log("happens")
-    const album = await Album.findOne({
-        where: { id : albumId},
-        attributes : ['userId']
-    })
-    if (album === null) {
-      return res.status(404).json(    {
-        "message": "Album couldn't be found",
-        "statusCode": 404
-      })
-    }
-    console.log("still happens")
-    const albumOwnerId = album.toJSON().userId
+    // console.log("happens")
+    // const album = await Album.findOne({
+    //     where: { id : albumId},
+    //     attributes : ['userId']
+    // })
+    // if (album === null) {
+    //   return res.status(404).json(    {
+    //     "message": "Album couldn't be found",
+    //     "statusCode": 404
+    //   })
+    // }
+    // console.log("still happens")
+    // const albumOwnerId = album.toJSON().userId
 
-    //i'm going to hell for this
+    //I'm going to hell for this
     // if (albumOwnerId !== userId) {
     //   return res.status(403).json({
     //     "message" : "Album must belong to the current user",
@@ -118,7 +119,7 @@ router.post('/:id', requireAuth, validateNewSong, async (req, res, next) => {
     // }
 
     const createdSong = await Song.create({
-      userId: albumOwnerId,
+      userId: userId,
       albumId: albumId,
       title: title,
       description: description,

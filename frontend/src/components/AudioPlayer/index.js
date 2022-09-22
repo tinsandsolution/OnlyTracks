@@ -11,7 +11,7 @@ import {useMusic} from '../../context/MusicContext'
 
 function OnlyPlayer(){
     const {playerSong} = useMusic()
-    const rickRoll = "https://cdn.discordapp.com/attachments/1017492963720433868/1021902188315934780/Never_Gonna_Give_You_Up_Original.mp3"
+    // const rickRoll = "https://cdn.discordapp.com/attachments/1017492963720433868/1021902188315934780/Never_Gonna_Give_You_Up_Original.mp3"
     return (
         <AudioPlayer
         // autoPlay

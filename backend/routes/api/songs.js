@@ -214,7 +214,7 @@ router.get('/:id/comments', async (req, res, next) => {
     },
     include : [{
       model: User,
-      attributes: ["id", "username"]
+      attributes: ["id", "username", "previewImage"]
     }]
   })
 
@@ -232,7 +232,8 @@ router.post('/:id/comments', requireAuth, validateComment, async (req, res, next
     err.title = "Couldn't find a song with the specified id";
     next(err)
   }
-
+  // console.log("fsadfasdfdasfsdafdasfasdf")
+  // console.log(req)
   let comment = await Comment.create({ songId: req.params.id, userId: req.user.id, body: req.body.body })
 
   return res.json(comment)

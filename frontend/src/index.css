@@ -10,6 +10,7 @@
 .mass-container {
     max-width: 1200px;
     margin: auto;
+    background-color: white;
 }
 
 .modal-form {

@@ -1,15 +1,15 @@
 import { csrfFetch } from './csrf';
 
 // actions
-const LOAD_SONGS = 'session/loadSongs'
-const ADD_SONG = 'session/uploadSong'
-const EDIT_SONG= 'session/editSong'
+const LOAD_COMMENTS = 'session/loadComments'
+// const ADD_SONG = 'session/uploadSong'
+// const EDIT_SONG= 'session/editSong'
 
-const loadComments = (songs) => {
+const loadComments = (comments) => {
   //you don't actually need to pass in songs but we'll keep it here because i'm lazy
     return {
-      type: LOAD_SONGS,
-      songs
+      type: LOAD_COMMENTS,
+      comments
     }
   }
 
@@ -26,19 +26,19 @@ const initialState = [];
 
 const commentReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_SONGS:
+    case LOAD_COMMENTS:
       // songs returns an entire thing describing what page you're on, etc etc
       // page:
       // size:
       // songs:
       // so what you want to do is basically just get the songs part of that
       // console.log(action.songs)
-      return { ...state, ...action.songs.songs};
-    case ADD_SONG:
-      return { ...state, action}
-      // console.log("asfddsafadsfasdfdasf")
-      // console.log(state)
-      return state
+      return {...action.comments};
+    // case ADD_SONG:
+    //   return { ...state, action}
+    //   // console.log("asfddsafadsfasdfdasf")
+    //   // console.log(state)
+    //   return state
     default:
       return state;
   }
@@ -64,13 +64,26 @@ const commentReducer = (state = initialState, action) => {
 // // AHHHHHH
 
 export const getComments = (songId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/${songId}/comments`,{
+    const response = await csrfFetch(`/api/songs/${songId}/comments`,{
         method: "GET"
     });
     const data = await response.json()
+    console.log(data)
+    dispatch(loadComments(data))
 
+}
 
-
+export const addComment = ({songId, comment}) => async (dispatch) => {
+  // console.log("addcoment section", comment)
+  // console.log("fasdfdsafsd",songId)
+  const response = await csrfFetch(`/api/songs/${songId}/comments`, {
+      method: "POST",
+      body: JSON.stringify({
+        body: comment
+      }),
+  })
+  const data = await response.json()
+  dispatch(getComments(songId))
 }
 
 // // should be renamed to add song

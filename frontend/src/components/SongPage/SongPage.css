@@ -1,0 +1,65 @@
+.song-page-container {
+    height: 300px;
+    width: 1170px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    padding: 15px 15px 15px 15px;
+    justify-content: space-between;
+    background: rgb(63,94,251);
+    background: linear-gradient(157deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+
+}
+
+.song-page-preview-image {
+    box-shadow: 5px 6px 15px -2px rgba(168,95,95,0.65);
+}
+
+.song-page-left > span {
+
+    font-family: Roboto;
+}
+
+.song-page-title {
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 4px;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.song-page-description {
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    width: min-content;
+}
+
+.song-page-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-page-play-button {
+    background-color: #b74f9f;
+    margin-top: 10px;
+    height: 70px;
+    width: 70px;
+    border-radius: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.song-page-play-button > img {
+    height: 50px;
+    width: 50px;
+}

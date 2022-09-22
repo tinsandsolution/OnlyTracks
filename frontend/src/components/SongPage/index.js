@@ -7,12 +7,14 @@ import {useMusic} from '../../context/MusicContext'
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import SongManageModal from "../SongManageModal"
 import CommentSection from '../CommentSection';
+import play from '../../assets/transparentplaybutton.png'
+
 function SongPage(){
     const dispatch = useDispatch();
     const {setPlayerSong} = useMusic()
     const history = useHistory()
     let { songId } = useParams();
-    console.log("this hits")
+    // console.log("this hits")
     const sessionUser = useSelector(state => state.session.user);
     if (!sessionUser) history.push("/")
 
@@ -31,24 +33,34 @@ function SongPage(){
         // const songs = Object.values(useSelector(state => state.songs))
         setSong(songs.find(song => +song.id === +songId))
     })
-    console.log(sessionUserId, song.userId)
+    // console.log(sessionUserId, song.userId)
     // const song = songs.find(song => +song.id === +songId)
     //console.log(song[0])
     // console.log(song)
     //console.log("hey")
     // songActions.checkAlbum()
-    console.log(song)
+    // console.log(song)
     return (
-        <div className='mass-container'>
-        {/* <p>{song.id}</p> */}
-        <p>{song.title}</p>
-        <p>{song.description}</p>
-        <p>{song.url}</p>
-        <p>{song.previewImage}</p>
-        <p></p>
-        {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
-        {/* {<SongManageModal song={song}/>} */}
-        <CommentSection songId={+songId}/>
+        <div className="mass-container">
+            <div className='song-page-container'>
+                <div className='song-page-left'>
+                    <span className="song-page-title">{song.title}</span>
+                    <span className="song-page-description">{song.description}</span>
+                    <div className='song-page-play-button' onClick={() => setPlayerSong(song.url)}>
+                        <img src={play} alt="play" ></img>
+                    </div>
+
+                </div>
+                {/* <p>{song.id}</p> */}
+                {/* <p>{song.url}</p> */}
+                <img className='song-page-preview-image'
+                     src={song.previewImage}
+                     alt={song.title}
+                     >
+                </img>
+            </div>
+            {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
+            <CommentSection songId={+songId}/>
         </div>
     )
 }

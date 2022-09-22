@@ -1,0 +1,76 @@
+.comment-section {
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    /* border: 1px solid black; */
+    width: 50%;
+}
+
+.comment-section > p {
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.posted-comments {
+    border-top: 1px solid red;
+}
+
+.comment-form {
+    flex-direction: column;
+    /* justify-content: right; */
+    /* align-items: flex-end; */
+    /* border: 1px solid black; */
+    padding: 5px 5px 5px 5px;
+
+}
+
+.comment-form > textarea{
+    margin-right: 10px;
+    min-width: 99%;
+    max-width: 99%;
+    max-height: 100px;
+    min-height: 50px;
+    /* height: */
+    font-size: 14px;
+}
+
+.send-comment-button {
+    color: white;
+    text-decoration: none;
+    background-color: #6f58d7;
+    border-radius: 10px;
+    padding: 8px;
+    margin-right: 5px;
+    margin-top: none;
+    border: 1px solid #6f58d7;
+}
+
+/* Comment Section Map Shit */
+
+.individual-comment {
+    display: flex;
+    flex-direction: row;
+}
+
+.comment-pfp {
+    width: 50px;
+    height: 50px;
+    /* padding-right: 10px; */
+    margin: 5px 10px 5px 5px;
+}
+
+.comment-pfp > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.comment-username {
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+}
+
+.comment-text {
+    padding-top: 5px;
+}

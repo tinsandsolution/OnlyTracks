@@ -63,7 +63,7 @@ const commentReducer = (state = initialState, action) => {
 
 // // AHHHHHH
 
-export const getComments = (songId) = async (dispatch) => {
+export const getComments = (songId) => async (dispatch) => {
     const response = await csrfFetch(`/api/${songId}/comments`,{
         method: "GET"
     });

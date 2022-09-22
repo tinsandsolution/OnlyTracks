@@ -6,6 +6,7 @@ import * as songActions from "../../store/songs"
 import {useMusic} from '../../context/MusicContext'
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import SongManageModal from "../SongManageModal"
+import CommentSection from '../CommentSection';
 function SongPage(){
     const dispatch = useDispatch();
     const {setPlayerSong} = useMusic()
@@ -39,7 +40,7 @@ function SongPage(){
     console.log(song)
     return (
         <div className='mass-container'>
-        <p>{song.id}</p>
+        {/* <p>{song.id}</p> */}
         <p>{song.title}</p>
         <p>{song.description}</p>
         <p>{song.url}</p>
@@ -47,6 +48,7 @@ function SongPage(){
         <p></p>
         {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
         {/* {<SongManageModal song={song}/>} */}
+        <CommentSection songId={+songId}/>
         </div>
     )
 }

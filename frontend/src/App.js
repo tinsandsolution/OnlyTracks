@@ -4,8 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 // import * as songActions from "./store/songs"
 import Navigation from "./components/Navigation";
-import SongSubmitPage from "./components/SongSubmitModal";
-import SongReadPage from "./components/SongReadPage"
 import OnlyPlayer from "./components/AudioPlayer"
 import HomePage from "./components/HomePage";
 import SongPage from "./components/SongPage";

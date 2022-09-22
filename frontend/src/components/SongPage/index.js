@@ -11,6 +11,7 @@ function SongPage(){
     const {setPlayerSong} = useMusic()
     const history = useHistory()
     let { songId } = useParams();
+    console.log("this hits")
     const sessionUser = useSelector(state => state.session.user);
     if (!sessionUser) history.push("/")
 
@@ -33,9 +34,9 @@ function SongPage(){
     // const song = songs.find(song => +song.id === +songId)
     //console.log(song[0])
     // console.log(song)
-    console.log("hey")
+    //console.log("hey")
     // songActions.checkAlbum()
-
+    console.log(song)
     return (
         <div className='mass-container'>
         <p>{song.id}</p>

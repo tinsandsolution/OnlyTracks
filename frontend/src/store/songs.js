@@ -2,7 +2,7 @@ import { csrfFetch } from './csrf';
 
 // actions
 const LOAD_SONGS = 'session/loadSongs'
-const ADD_SONG = 'session/addSong'
+const ADD_SONG = 'session/uploadSong'
 const EDIT_SONG= 'session/editSong'
 
 const loadSongs = (songs) => {
@@ -20,6 +20,7 @@ const uploadSong = (song) => {
     }
 }
 
+
 // reducers
 const initialState = [];
 
@@ -34,6 +35,7 @@ const songReducer = (state = initialState, action) => {
       // console.log(action.songs)
       return { ...state, ...action.songs.songs};
     case ADD_SONG:
+      return { ...state, action}
       // console.log("asfddsafadsfasdfdasf")
       // console.log(state)
       return state
@@ -120,7 +122,10 @@ export const addSong = (user) => async (dispatch) => {
     });
 
     const data2 = await response2.json();
-    dispatch(loadSongs(data2))
+    dispatch(uploadSong(data2))
+    // console.log("now here's the data2 from heeere", data2)
+    // console.log(typeof response2)
+    response2["musicdata"] = data2
     // console.log("here is data2", data2)
     //again you don't actually need to reload anything
     return response2;

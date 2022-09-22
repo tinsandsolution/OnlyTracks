@@ -42,10 +42,15 @@ function SongSubmitForm({setShowModal}) {
                 }
                 // else newSongId = data.id
             });
-        console.log("homm", item)
+        console.log("homm", item.musicdata.id)
         if (!errors.length) {
-          setShowModal(false)
-          // history.push(`/songs/${newSongId}`)
+          setFile("")
+          setTitle("")
+          setDescription("")
+          setPreviewImage("")
+          // setShowModal(false)
+          // console.log(item)
+          // history.push(`/songs/${item.musicdata.id}`)
         }
     }
 

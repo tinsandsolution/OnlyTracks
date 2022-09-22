@@ -54,6 +54,7 @@ router.put('/:id', requireAuth, validateComment, async (req, res, next) => {
 
 // delete a comment
 router.delete('/:id', requireAuth, async (req, res) => {
+    //i'm going to hell for this
     const userId = req.user.id
 
     const comment = await Comment.findOne({

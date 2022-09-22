@@ -69,7 +69,8 @@ function CommentSection({songId}){
                     onChange={(e)=>setComment(e.target.value)}
                 ></textarea>
                 <br />
-                <button className="send-comment-button" type="submit" disabled={comment.length < 4 ? true : false}>Send Comment</button>
+                {comment.length < 4 ? "" : <button className="send-comment-button" type="submit" disabled={comment.length < 4 ? true : false}>Send Comment</button>}
+
             </form>
         </div>
     )

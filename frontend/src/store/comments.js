@@ -86,6 +86,16 @@ export const addComment = ({songId, comment}) => async (dispatch) => {
   dispatch(getComments(songId))
 }
 
+export const deleteComment = ({songId, commentId}) => async (dispatch) => {
+  // console.log("addcoment section", comment)
+  // console.log("fasdfdsafsd",songId)
+  const response = await csrfFetch(`/api/comments/${commentId}`, {
+      method: "DELETE",
+  })
+  const data = await response.json()
+  dispatch(getComments(songId))
+}
+
 // // should be renamed to add song
 // export const checkAlbum = async () => {
 //   // get the current user

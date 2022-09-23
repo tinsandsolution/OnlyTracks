@@ -4,11 +4,15 @@
 
 Onlytracks is a clone of soundcloud. All current music and images is in the public domain!
 
+Currently, two features are available: Songs and comments.
+
 # Technologies
 
 React
 
 Redux
+
+HTML/CSS
 
 react-h5-audio-player
 

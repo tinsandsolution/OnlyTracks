@@ -24,7 +24,7 @@ function SongSubmitForm({setShowModal}) {
         if (!file.match(musicRe)) errors.push("Audio file needs to be an .mp3")
         if (!previewImage.match(/.*\.(jpg|png|bmp|jpeg)$/)) errors.push("Image needs to be a .jpg, .png, .bmp, or a .jpeg")
         setErrors(errors)
-    },[file, previewImage])
+    },[file, previewImage, title, description])
 
     const handleSubmit = async (e) => {
         e.preventDefault();

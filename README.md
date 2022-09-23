@@ -2,15 +2,33 @@
 
 # Intro
 
+Onlytracks is a clone of soundcloud. All current music and images is in the public domain!
+
 # Technologies
+
+React
+
+Redux
+
+react-h5-audio-player
 
 # - image -
 
+![image](otcoverforreadme.png)
+
 # How to launch locally
 
-(move everything below this to wiki)
+```
 
-## Database Schema Design
+git clone https://github.com/tinsandsolution/OnlyTracks.git
+
+cd backend && npm start
+
+cd ../frontend && npm start
+
+```
+
+<!-- ## Database Schema Design
 
 ![image](OnlyTracks.png)
 
@@ -1564,4 +1582,4 @@ Return songs filtered by query parameters.
         "createdAt": "CreatedAt is invalid"
       }
     }
-    ```
+    ``` -->

@@ -21,7 +21,7 @@ function SongPage(){
     const sessionUserId = useSelector((state) => state.session.user).id
     const songs = Object.values(useSelector(state => state.songs))//.find(song => song.id === songId)
     const [song, setSong] = useState(songs.find(song => +song.id === +songId))
-
+    // setPlayerSong(song.url)
     //console.log(sessionUserId)
 
     // console.log("id", songId)

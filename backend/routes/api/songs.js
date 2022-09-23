@@ -214,9 +214,10 @@ router.get('/:id/comments', async (req, res, next) => {
     },
     include : [{
       model: User,
-      attributes: ["id", "username", "previewImage"]
+      attributes: ["id", "username"]
     }]
   })
+  console.log("here is the comments", comments)
 
   return res.json(comments)
 })

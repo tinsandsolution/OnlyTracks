@@ -89,7 +89,7 @@ router.post(
     delete user.dataValues.createdAt
     delete user.dataValues.updatedAt
 
-    console.log(user)
+    console.log("here is the user" , user)
     return res.json({
       user, token
     });

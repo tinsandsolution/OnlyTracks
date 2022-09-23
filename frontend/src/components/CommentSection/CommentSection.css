@@ -51,6 +51,7 @@
 .individual-comment {
     display: flex;
     flex-direction: row;
+    /* justify-content: space-between; */
 }
 
 .comment-pfp {
@@ -74,4 +75,22 @@
 
 .comment-text {
     padding-top: 5px;
+}
+
+.comment-delete-container {
+
+    text-decoration: none;
+    /* background-color: #6f58d7; */
+    /* border-radius: 10px; */
+    /* padding: 8px; */
+    margin-left: 20px;
+    /* margin-top: none; */
+    /* border: 1px solid #6f58d7; */
+    cursor: pointer;
+}
+
+.comment-delete-button {
+    color: white;
+    background-color: #d34b8a;
+    border: none;
 }

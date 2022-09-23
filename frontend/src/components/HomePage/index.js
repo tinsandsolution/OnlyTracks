@@ -62,6 +62,13 @@ function HomePage(){
             <div className="homepage-song-container">
                 {cards}
             </div>
+            <div className='homepage-playlist-name'>Latest New Tracks</div>
+            <div className='homepage-playlist-desc'>Look at you, you're just like Missy Elliot</div>
+            <div className='homepage-playlist-name'>Blues!</div>
+            <div className='homepage-playlist-desc'>Oh that's nice</div>
+            <div className='homepage-playlist-name'>Fiddle Music!</div>
+            <div className='homepage-playlist-desc'>The Devil Went Down To Georgia and you went down to OnlyTracks</div>
+
         </div>
         </>
     )

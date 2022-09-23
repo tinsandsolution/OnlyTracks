@@ -42,9 +42,13 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
     static associate(models) {
-      User.hasMany(models.Song, { sourceKey: 'id', foreignKey: 'userId' })
-      User.hasMany(models.Album, { sourceKey: 'id', foreignKey: 'userId' })
-      User.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'userId' })
+      // User.hasMany(models.Song, { sourceKey: 'id', foreignKey: 'userId' })
+      // User.hasMany(models.Album, { sourceKey: 'id', foreignKey: 'userId' })
+      // User.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'userId' })
+      User.hasMany(models.Song, { foreignKey: 'userId' })
+      User.hasMany(models.Album, { foreignKey: 'userId' })
+      User.hasMany(models.Comment, { foreignKey: 'userId' })
+
     }
   };
 

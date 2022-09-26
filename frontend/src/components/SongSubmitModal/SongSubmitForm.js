@@ -21,6 +21,7 @@ function SongSubmitForm({setShowModal}) {
         if (!title.length) errors.push("Title must be greater than three characters")
         if (title.length > 250) errors.push("Please make your title shorter")
         if (description.length > 250) errors.push("Please make your description Shorter")
+        if (description.length < 4) errors.push("Description must be greater than three characters")
         if (!file.match(musicRe)) errors.push("Audio file needs to be an .mp3")
         if (!previewImage.match(/.*\.(jpg|png|bmp|jpeg)$/)) errors.push("Image needs to be a .jpg, .png, .bmp, or a .jpeg")
         setErrors(errors)
@@ -56,8 +57,9 @@ function SongSubmitForm({setShowModal}) {
 
     return (
       <>
-      <form className="modal-form"onSubmit={handleSubmit}>
+      <form className="modal-form" onSubmit={handleSubmit}>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        <br />
         <label>
           Song Title <br />
           <input
@@ -92,7 +94,11 @@ function SongSubmitForm({setShowModal}) {
             required
           />
         </label>
-        <button type="submit" disabled={errors.length ? true : false}>{errors.length ? "Invalid" : "Create New Track"}</button>
+        {!errors.length ?
+        <button type="submit" disabled={errors.length ? true : false}>{errors.length ? "Invalid" : "Create New Track"}</button> :
+        <br />
+      }
+
       </form>
       </>
     );

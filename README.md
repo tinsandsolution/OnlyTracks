@@ -14,9 +14,17 @@ Redux
 
 HTML/CSS
 
+PostgreSQL
+
+Express
+
+Node
+
+Sequelize
+
 react-h5-audio-player
 
-# - image -
+# Homepage
 
 ![image](otcoverforreadme.png)
 

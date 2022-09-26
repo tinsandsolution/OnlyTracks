@@ -40,7 +40,7 @@ function SignupFormPage() {
           }
         });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors(['Confirm Password field must be the','same as the Password field']);
   };
 
   return (
@@ -84,7 +84,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button id="submit-signup" type="submit">Sign Up</button>
     </form>
   );
 }

@@ -16,12 +16,37 @@
 .modal-form {
     min-width: 300px;
     max-width: 400px;
+    word-wrap: break-word;
     /* min-height: 400px; */
     max-height: 600px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+}
+
+.modal-form-2 {
+    margin-top: 0px;
+    min-width: 300px;
+    max-width: 400px;
+    word-wrap: break-word;
+    /* min-height: 400px; */
+    max-height: 600px;
+    padding: 0px 20px 20px 20px;
     display: flex;
     flex-direction: column;
 }
+
+.modal-form-2 > button {
+    color: white;
+    background-color: #29335C;
+    background-color: #ff5500;
+    border: 0px solid #ff5500;
+    border-radius: 5px;
+    height: 30px;
+    margin: 5px 0px 5px 0px;
+}
+
 
 .modal-form > label > input {
     width: 300px;
@@ -35,7 +60,8 @@
 
 .modal-form > button {
     color: white;
-    background-color: #29335C;
+    background-color: #ff5500;
+    border: 0px solid #ff5500;
     border-radius: 5px;
     height: 30px;
     margin: 5px 0px 5px 0px;

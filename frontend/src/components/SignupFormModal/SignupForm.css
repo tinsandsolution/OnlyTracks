@@ -1,11 +1,12 @@
-.signup-button {
-    /* color: white;
+#submit-signup {
+    color: white;
     text-decoration: none;
-    background-color: #AB3428;
-    border-radius: 10px;
-    padding: 8px;
-    margin-right: 5px;
-    border: 1px solid white; */
+    background-color: #ff5500;
+    border-radius: 5px;
+    /* padding: 8px; */
+    /* margin-right: 5px; */
+    border: 1px solid #ff5500;
+    cursor: pointer;
 
 }
 

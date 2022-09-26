@@ -37,9 +37,6 @@ function LoginForm() {
 
   return (
     <>
-    <form className='modal-form'>
-      <button onClick={demoUser}>Demo User</button>
-    </form>
     <form className="modal-form"onSubmit={handleSubmit}>
       <ul>
         {errors}
@@ -64,6 +61,9 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+    </form>
+    <form className='modal-form-2'>
+      <button onClick={demoUser}>Demo User</button>
     </form>
     </>
   );

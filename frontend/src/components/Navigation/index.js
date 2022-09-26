@@ -9,7 +9,12 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import SongSubmitModal from '../SongSubmitModal';
 import SongSplashPreview from '../SplashPreview';
+import { useLocation } from "react-router-dom"
+
+
 function Navigation({ isLoaded }){
+  const location = useLocation();
+
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
@@ -49,7 +54,8 @@ function Navigation({ isLoaded }){
   }
 
   // const splasha = (<img src={splash} alt="splash"></img>)
-
+  // console.log(location.pathname)
+  if (location.pathname !== "/") splashStuff = (<></>)
   return (
     <>
     <div className='navbar-outer'>

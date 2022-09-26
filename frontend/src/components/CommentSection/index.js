@@ -24,29 +24,29 @@ function CommentSection({ songId }) {
     // console.log(Object.values(comments)[0]["User"])
 
     let timePhrase = (dateTimeString) => {
-        let unixTime = Date.now() - Date.parse(dateTimeString)
+        let unixTime = Date.now()-Date.parse(dateTimeString)
         // console.log(Date(dateTimeString))
 
         if (unixTime >= 86400000) {
             let phrase = "day"
-            if (unixTime >= 2 * 86400000) phrase = "days"
             let properUnit = (Math.round(unixTime / 86400000))
+            if (properUnit >= 2) phrase = "days"
             return `${properUnit} ${phrase} ago`
         }
         else if (unixTime >= 3600000) {
             let phrase = "hour"
-            if (unixTime >= 2 * 3600000) phrase = "hours"
             let properUnit = (Math.round(unixTime / 3600000))
+            if (properUnit >= 2) phrase = "hours"
             return `${properUnit} ${phrase} ago`
         }
         else if (unixTime >= 60000) {
             let phrase = "minute"
-            if (unixTime >= 2 * 60000) phrase = "minutes"
             let properUnit = (Math.round(unixTime / 60000))
+            if (properUnit >= 2 * 60000) phrase = "minutes"
             return `${properUnit} ${phrase} ago`
         }
         else {
-            return "recently"
+            return "Moments ago"
         }
 
     }

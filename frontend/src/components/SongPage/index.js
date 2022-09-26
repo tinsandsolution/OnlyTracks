@@ -22,9 +22,6 @@ function SongPage(){
     const songs = Object.values(useSelector(state => state.songs))//.find(song => song.id === songId)
     const [song, setSong] = useState(songs.find(song => +song.id === +songId))
     // setPlayerSong(song.url)
-    //console.log(sessionUserId)
-
-    // console.log("id", songId)
     useEffect(()=> {
         dispatch(songActions.getSongs());
     },[])
@@ -33,13 +30,38 @@ function SongPage(){
         // const songs = Object.values(useSelector(state => state.songs))
         setSong(songs.find(song => +song.id === +songId))
     })
-    // console.log(sessionUserId, song.userId)
-    // const song = songs.find(song => +song.id === +songId)
-    //console.log(song[0])
-    // console.log(song)
-    //console.log("hey")
-    // songActions.checkAlbum()
-    // console.log(song)
+    // console.log(Date.now()-Date.parse(song.updatedAt))
+    let timePhrase = (dateTimeString) => {
+        let unixTime = Date.now()-Date.parse(dateTimeString)
+        // console.log(Date(dateTimeString))
+
+        if (unixTime >= 86400000) {
+            let phrase = "day"
+            if (unixTime * 2 >= unixTime) phrase = "days"
+            let properUnit = (Math.round(unixTime/86400000))
+            return `${properUnit} ${phrase} ago`
+        }
+        else if (unixTime >= 3600000) {
+            let phrase = "hour"
+            if (unixTime * 2 >= unixTime) phrase = "hours"
+            let properUnit = (Math.round(unixTime/3600000))
+            return `${properUnit} ${phrase} ago`
+        }
+        else if (unixTime >= 60000) {
+            let phrase = "minute"
+            if (unixTime * 2 >= unixTime) phrase = "minutes"
+            let properUnit = (Math.round(unixTime/60000))
+            return `${properUnit} ${phrase} ago`
+        }
+        else {
+            return "recently"
+        }
+
+    }
+
+
+    console.log(timePhrase(song.updatedAt))
+    // if (recency > 3600000)
     return (
         <div className="mass-container">
             <div className='song-page-container'>
@@ -51,13 +73,19 @@ function SongPage(){
                     </div>
 
                 </div>
+
                 {/* <p>{song.id}</p> */}
                 {/* <p>{song.url}</p> */}
-                <img className='song-page-preview-image'
-                     src={song.previewImage}
-                     alt={song.title}
-                     >
-                </img>
+                <div className='song-page-right'>
+                    <div className='song-page-time'>
+                        {timePhrase(song.updatedAt)}
+                    </div>
+                    <img className='song-page-preview-image'
+                        src={song.previewImage}
+                        alt={song.title}
+                        >
+                    </img>
+                </div>
             </div>
             {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
             <CommentSection songId={+songId}/>

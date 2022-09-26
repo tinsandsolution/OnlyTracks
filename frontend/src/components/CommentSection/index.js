@@ -23,6 +23,34 @@ function CommentSection({songId}){
     const comments = useSelector(state => state.comments)
     // console.log(Object.values(comments)[0]["User"])
 
+    let timePhrase = (dateTimeString) => {
+        let unixTime = Date.now()-Date.parse(dateTimeString)
+        // console.log(Date(dateTimeString))
+
+        if (unixTime >= 86400000) {
+            let phrase = "day"
+            if (unixTime * 2 >= unixTime) phrase = "days"
+            let properUnit = (Math.round(unixTime/86400000))
+            return `${properUnit} ${phrase} ago`
+        }
+        else if (unixTime >= 3600000) {
+            let phrase = "hour"
+            if (unixTime * 2 >= unixTime) phrase = "hours"
+            let properUnit = (Math.round(unixTime/3600000))
+            return `${properUnit} ${phrase} ago`
+        }
+        else if (unixTime >= 60000) {
+            let phrase = "minute"
+            if (unixTime * 2 >= unixTime) phrase = "minutes"
+            let properUnit = (Math.round(unixTime/60000))
+            return `${properUnit} ${phrase} ago`
+        }
+        else {
+            return "recently"
+        }
+
+    }
+
     let currentComments = (
         <></>
     )
@@ -35,23 +63,34 @@ function CommentSection({songId}){
             return (
                 <>
                 <div key={idx} className="individual-comment">
-                    <div className="comment-pfp">
-                        <img src="https://media.discordapp.net/attachments/1017492963720433868/1022637299189694524/women-queen-elizabeth-ii-wallpaper-preview.jpg"></img>
+
+                    <div className="comment-left">
+                        <div className="comment-pfp">
+                            <img src="https://media.discordapp.net/attachments/1017492963720433868/1022637299189694524/women-queen-elizabeth-ii-wallpaper-preview.jpg"></img>
+                        </div>
+                        <div className="comment-other">
+                            <div className="comment-username">
+                                {username}
+                            </div>
+                            <div className="comment-text">
+                                {comment.body}
+                            </div>
+                        </div>
                     </div>
-                    <div className="comment-other">
-                        <div className="comment-username">
-                            {username}
-                        </div>
-                        <div className="comment-text">
-                            {comment.body}
-                        </div>
+                    <div className="comment-delete-container">
+                        <span className="comment-date">
+                            {`${timePhrase(comment.updatedAt)} `}
+                        </span>
+                        {comment.userId === sessionUserId ?
+                        <CommentDelete commentId={comment.id} songId={comment.songId}/> :
+                        "" }
                     </div>
                 </div>
-                <div className="comment-delete-container">
+                {/* <div className="comment-delete-container">
                     {comment.userId === sessionUserId ?
                     <CommentDelete commentId={comment.id} songId={comment.songId}/> :
                     "" }
-                </div>
+                </div> */}
                 </>
             )
         })
@@ -60,7 +99,7 @@ function CommentSection({songId}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("index.js", comment)
+        // console.log("index.js", comment)
         dispatch(commentActions.addComment({songId, comment}))
     }
 
@@ -72,10 +111,11 @@ function CommentSection({songId}){
             </div>
             <form className="comment-form" onSubmit={handleSubmit}>
                 What are your thoughts? (Please be gentle)
-                <ul>
-                </ul>
+                <br />
+                <br />
                 <textarea
                     type="text"
+                    placeholder="Please be polite!"
                     value={comment}
                     onChange={(e)=>setComment(e.target.value)}
                 ></textarea>

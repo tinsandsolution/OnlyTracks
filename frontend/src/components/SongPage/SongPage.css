@@ -11,8 +11,23 @@
 
 }
 
+.song-page-right {
+    display: flex;
+}
+
+.song-page-time {
+    margin-right: 10px;
+    margin-top: 3px;
+    font-size: 16px;
+    font-family: Roboto;
+    color: white;
+}
+
 .song-page-preview-image {
     box-shadow: 5px 6px 15px -2px rgba(168,95,95,0.65);
+    width: 300px;
+    height: 300px;
+    object-fit:cover;
 }
 
 .song-page-left > span {

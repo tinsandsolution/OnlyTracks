@@ -68,7 +68,7 @@ export const getComments = (songId) => async (dispatch) => {
         method: "GET"
     });
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     dispatch(loadComments(data))
 
 }
@@ -89,7 +89,7 @@ export const addComment = ({songId, comment}) => async (dispatch) => {
 export const deleteComment = ({songId, commentId}) => async (dispatch) => {
   // console.log("addcoment section", comment)
   // console.log("fasdfdsafsd",songId)
-  console.log("this hits", commentId, songId)
+  // console.log("this hits", commentId, songId)
   const response = await csrfFetch(`/api/comments/${commentId}`, {
       method: "DELETE",
   })

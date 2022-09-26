@@ -50,8 +50,8 @@ const songReducer = (state = initialState, action) => {
       // console.log(state)
       return {...state, ...action.song}
     case REMOVE_SONG:
-      console.log("here is the remove song", state)
-      console.log(action.songId)
+      // console.log("here is the remove song", state)
+      // console.log(action.songId)
       const newState = Object.values(state).filter(song => song.id !== action.songId)
       return {...newState}
     default:
@@ -124,7 +124,7 @@ export const addSong = (user) => async (dispatch) => {
     const data = await response.json()
 
     const userId = data.id
-    console.log("current user id", data.id)
+    // console.log("current user id", data.id)
     const albumId = 1
     const url = file
     const response2 = await csrfFetch(`/api/albums/1`, {
@@ -162,7 +162,7 @@ export const addSong = (user) => async (dispatch) => {
   export const deleteSong = (data) => async (dispatch) => {
     const {songId} = data
 
-    console.log("attempting to delete from songs.js")
+    // console.log("attempting to delete from songs.js")
     const response = await csrfFetch(`/api/songs/${songId}`, {
       method: "DELETE",
     });
@@ -175,9 +175,9 @@ export const addSong = (user) => async (dispatch) => {
   }
 
   export const editSong = (data) => async (dispatch) => {
-    console.log("editSong")
+    // console.log("editSong")
     const {title, description, file, previewImage, songId} = data
-    console.log("editSong")
+    // console.log("editSong")
     const url = file
     const response = await csrfFetch(`/api/songs/${songId}`, {
       method: "PUT",

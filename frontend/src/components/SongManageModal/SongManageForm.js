@@ -7,7 +7,7 @@ import './SongManageForm.css';
 
 function SongManageFormPage({song, setShowModal}) {
   const dispatch = useDispatch();
-  console.log(song)
+  // console.log(song)
   // const sessionUser = useSelector((state) => state.session.user);
   if (song.description === null) song.description = ""
   const history = useHistory()
@@ -65,7 +65,7 @@ function SongManageFormPage({song, setShowModal}) {
     //   //console.log("happening")
     // }
     dispatch(songActions.deleteSong({songId}))
-    console.log("attempting to delete")
+    // console.log("attempting to delete")
     history.push("/")
  }
 

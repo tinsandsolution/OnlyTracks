@@ -60,7 +60,7 @@ function SongPage(){
     }
 
 
-    console.log(timePhrase(song.updatedAt))
+    // console.log(timePhrase(song.updatedAt))
     // if (recency > 3600000)
     return (
         <div className="mass-container">

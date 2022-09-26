@@ -33,7 +33,7 @@ function SongSubmitForm({setShowModal}) {
         let newSongId = null
         let item = await dispatch(songActions.addSong({title, description, file, previewImage}))
             .catch(async (res) => {
-                console.log("fasdfasdf")
+                // console.log("fasdfasdf")
                 const data = await res.json();
                 if (data && data.errors) {
                   // console.log("this hits")
@@ -45,9 +45,9 @@ function SongSubmitForm({setShowModal}) {
                 }
                 // else newSongId = data.id
             });
-        console.log("homm", item.songId)
+        // console.log("homm", item.songId)
         if (!errors.length) {
-          console.log("apparently there's no errors")
+          // console.log("apparently there's no errors")
           // console.log(`/songs/${newSongId}`)
           await dispatch(songActions.getSongs())
           history.push(`/songs/${item.songId}`)

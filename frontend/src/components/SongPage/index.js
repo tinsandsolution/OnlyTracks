@@ -16,7 +16,7 @@ function SongPage(){
     let { songId } = useParams();
     // console.log("this hits")
     const sessionUser = useSelector(state => state.session.user);
-    if (!sessionUser) history.push("/")
+    // if (!sessionUser) history.push("/")
 
     const sessionUserId = useSelector((state) => state.session.user).id
     const songs = Object.values(useSelector(state => state.songs))//.find(song => song.id === songId)

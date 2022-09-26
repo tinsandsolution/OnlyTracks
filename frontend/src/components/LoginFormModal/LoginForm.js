@@ -45,8 +45,8 @@ function LoginForm() {
       {/* </ul> */}
       <br />
       <label>
-        Username or Email<br />
         <input
+          placeholder='Username or Email'
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -54,9 +54,9 @@ function LoginForm() {
         />
       </label>
       <label>
-        Password <br />
         <input
           type="password"
+          placeholder='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

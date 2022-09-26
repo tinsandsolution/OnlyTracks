@@ -1,12 +1,13 @@
 .edit-song-button {
     color: white;
     text-decoration: none;
-    background-color: #AB3428;
+    background-color: #f4486c;
     border-radius: 5px;
     padding: 8px;
     margin-right: 5px;
     margin-top: none;
     border: 1px solid white;
+    cursor: pointer;
 }
 
 /* You don't actually need this file because you can just refer to Navigation.css */

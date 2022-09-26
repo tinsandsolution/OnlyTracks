@@ -61,35 +61,36 @@ function SongSubmitForm({setShowModal}) {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         <br />
         <label>
-          Song Title <br />
           <input
             type="text"
+            placeholder="Song Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
         </label>
         <label>
-          Description <br />
           <input
             type="textarea"
+            placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>
         <label>
-            Song File<br />
           <input
+            placeholder="Song File"
             type="text" value={file}
             onChange={(e) => setFile(e.target.value)}
             required
           />
         </label>
         <label>
-            Song Image <br />
           <input
-            type="text" value={previewImage}
+            type="text"
+            placeholder="Song Image"
+            value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
             required
           />

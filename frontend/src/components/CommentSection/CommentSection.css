@@ -24,6 +24,10 @@
 
 }
 
+.comment-other * {
+    word-wrap: break-word;
+}
+
 .comment-left {
     display: flex;
 }
@@ -44,11 +48,19 @@
     outline: 1px solid pink;
 }
 
+.comment-heading {
+    display: flex;
+    justify-content: space-between;
+}
+.comment-right {
+    width: 530px;
+}
+
 .send-comment-button {
     color: white;
     text-decoration: none;
     background-color: #6f58d7;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 8px;
     margin-right: 5px;
     margin-top: none;
@@ -62,6 +74,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+    word-wrap: break-word;
     /* justify-content: space-between; */
 }
 
@@ -89,6 +103,9 @@
 
 .comment-text {
     padding-top: 5px;
+    width: 530px;
+    /* word-wrap: break-word; */
+    /* width: min-content; */
 }
 
 .comment-date{

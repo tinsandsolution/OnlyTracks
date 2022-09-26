@@ -6,7 +6,7 @@ import * as commentActions from "../../store/comments"
 import './CommentSection.css'
 import CommentDelete from "./CommentDelete";
 
-function CommentSection({songId}){
+function CommentSection({ songId }) {
     // in this section we need to pass in the ID for the song.
     // not really sure how to do that
     //
@@ -16,33 +16,33 @@ function CommentSection({songId}){
     const [comment, setComment] = useState("")
     const [isLoaded, setIsLoaded] = useState(false);
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(commentActions.getComments(songId)).then(() => setIsLoaded(true));
-    },[dispatch])
+    }, [dispatch])
 
     const comments = useSelector(state => state.comments)
     // console.log(Object.values(comments)[0]["User"])
 
     let timePhrase = (dateTimeString) => {
-        let unixTime = Date.now()-Date.parse(dateTimeString)
+        let unixTime = Date.now() - Date.parse(dateTimeString)
         // console.log(Date(dateTimeString))
 
         if (unixTime >= 86400000) {
             let phrase = "day"
-            if (unixTime * 2 >= unixTime) phrase = "days"
-            let properUnit = (Math.round(unixTime/86400000))
+            if (unixTime >= 2 * 86400000) phrase = "days"
+            let properUnit = (Math.round(unixTime / 86400000))
             return `${properUnit} ${phrase} ago`
         }
         else if (unixTime >= 3600000) {
             let phrase = "hour"
-            if (unixTime * 2 >= unixTime) phrase = "hours"
-            let properUnit = (Math.round(unixTime/3600000))
+            if (unixTime >= 2 * 3600000) phrase = "hours"
+            let properUnit = (Math.round(unixTime / 3600000))
             return `${properUnit} ${phrase} ago`
         }
         else if (unixTime >= 60000) {
             let phrase = "minute"
-            if (unixTime * 2 >= unixTime) phrase = "minutes"
-            let properUnit = (Math.round(unixTime/60000))
+            if (unixTime >= 2 * 60000) phrase = "minutes"
+            let properUnit = (Math.round(unixTime / 60000))
             return `${properUnit} ${phrase} ago`
         }
         else {
@@ -55,7 +55,7 @@ function CommentSection({songId}){
         <></>
     )
     if (isLoaded) {
-        currentComments = Object.values(comments).map((comment,idx) => {
+        currentComments = Object.values(comments).map((comment, idx) => {
             let username = "Anonymous User"
             let pfp = "https://media.discordapp.net/attachments/1017492963720433868/1022637299189694524/women-queen-elizabeth-ii-wallpaper-preview.jpg"
             if (Object.values(comments)[idx]["User"] !== null) {
@@ -65,35 +65,38 @@ function CommentSection({songId}){
             // console.log(comment)
             return (
                 <>
-                <div key={idx} className="individual-comment">
+                    <div key={idx} className="individual-comment">
 
-                    <div className="comment-left">
-                        <div className="comment-pfp">
-                            <img
-                            src={pfp}
-                            >
+                        <div className="comment-left">
+                            <div className="comment-pfp">
+                                <img
+                                    src={pfp}
+                                >
 
-                            </img>
-                        </div>
-                        <div className="comment-other">
-                            <div className="comment-username">
-                                {username}
+                                </img>
                             </div>
-                            <div className="comment-text">
-                                {comment.body}
+                            <div className="comment-right">
+                                <div className="comment-heading">
+                                    <div className="comment-username">
+                                        {username}
+                                    </div>
+                                    <div className="comment-delete-container">
+                                        <span className="comment-date">
+                                            {`${timePhrase(comment.updatedAt)} `}
+                                        </span>
+                                        {comment.userId === sessionUserId ?
+                                            <CommentDelete className="comment-delete-button" commentId={comment.id} songId={comment.songId} /> :
+                                            ""}
+                                    </div>
+                                </div>
+                                <div className="comment-text">
+                                    {comment.body}
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                    <div className="comment-delete-container">
-                        <span className="comment-date">
-                            {`${timePhrase(comment.updatedAt)} `}
-                        </span>
-                        {comment.userId === sessionUserId ?
-                        <CommentDelete className="comment-delete-button" commentId={comment.id} songId={comment.songId}/> :
-                        "" }
-                    </div>
-                </div>
-                {/* <div className="comment-delete-container">
+                    {/* <div className="comment-delete-container">
                     {comment.userId === sessionUserId ?
                     <CommentDelete commentId={comment.id} songId={comment.songId}/> :
                     "" }
@@ -107,7 +110,7 @@ function CommentSection({songId}){
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("index.js", comment)
-        dispatch(commentActions.addComment({songId, comment}))
+        dispatch(commentActions.addComment({ songId, comment }))
     }
 
     return (
@@ -124,7 +127,7 @@ function CommentSection({songId}){
                     type="text"
                     placeholder="Please be polite!"
                     value={comment}
-                    onChange={(e)=>setComment(e.target.value)}
+                    onChange={(e) => setComment(e.target.value)}
                 ></textarea>
                 <br />
                 {comment.length < 4 ? "" : <button className="send-comment-button" type="submit" disabled={comment.length < 4 ? true : false}>Send Comment</button>}

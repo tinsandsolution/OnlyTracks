@@ -37,28 +37,29 @@ function SongPage(){
 
         if (unixTime >= 86400000) {
             let phrase = "day"
-            if (unixTime * 2 >= unixTime) phrase = "days"
-            let properUnit = (Math.round(unixTime/86400000))
+            if (unixTime >= 2 * 86400000) phrase = "days"
+            let properUnit = (Math.round(unixTime / 86400000))
             return `${properUnit} ${phrase} ago`
         }
         else if (unixTime >= 3600000) {
             let phrase = "hour"
-            if (unixTime * 2 >= unixTime) phrase = "hours"
-            let properUnit = (Math.round(unixTime/3600000))
+            if (unixTime >= 2 * 3600000) phrase = "hours"
+            let properUnit = (Math.round(unixTime / 3600000))
             return `${properUnit} ${phrase} ago`
         }
         else if (unixTime >= 60000) {
             let phrase = "minute"
-            if (unixTime * 2 >= unixTime) phrase = "minutes"
-            let properUnit = (Math.round(unixTime/60000))
+            if (unixTime >= 2 * 60000) phrase = "minutes"
+            let properUnit = (Math.round(unixTime / 60000))
             return `${properUnit} ${phrase} ago`
         }
         else {
-            return "recently"
+            return "Moments ago"
         }
 
     }
 
+    if(!song) return (<></>)
 
     // console.log(timePhrase(song.updatedAt))
     // if (recency > 3600000)

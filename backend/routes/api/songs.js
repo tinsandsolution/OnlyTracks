@@ -214,7 +214,7 @@ router.get('/:id/comments', async (req, res, next) => {
     },
     include : [{
       model: User,
-      attributes: ["id", "username"]
+      attributes: ["id", "username","previewImage"]
     }]
   })
   console.log("here is the comments", comments)

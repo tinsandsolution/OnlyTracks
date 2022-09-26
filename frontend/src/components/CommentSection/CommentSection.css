@@ -95,6 +95,7 @@
     color: gray;
     font-size: 13px;
     padding-right: 5px;
+    cursor: auto;
 }
 
 .comment-delete-container {
@@ -106,7 +107,6 @@
     margin-left: 20px;
     /* margin-top: none; */
     /* border: 1px solid #6f58d7; */
-    cursor: pointer;
 }
 
 .comment-delete-button {
@@ -114,6 +114,7 @@
     background-color: #d34b8a;
     border: none;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .comment-write-container {

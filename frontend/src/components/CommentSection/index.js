@@ -57,16 +57,23 @@ function CommentSection({songId}){
     if (isLoaded) {
         currentComments = Object.values(comments).map((comment,idx) => {
             let username = "Anonymous User"
+            let pfp = "https://media.discordapp.net/attachments/1017492963720433868/1022637299189694524/women-queen-elizabeth-ii-wallpaper-preview.jpg"
             if (Object.values(comments)[idx]["User"] !== null) {
                 username = Object.values(comments)[idx]["User"]["username"]
+                pfp = Object.values(comments)[idx]["User"]["previewImage"]
             }
+            // console.log(comment)
             return (
                 <>
                 <div key={idx} className="individual-comment">
 
                     <div className="comment-left">
                         <div className="comment-pfp">
-                            <img src="https://media.discordapp.net/attachments/1017492963720433868/1022637299189694524/women-queen-elizabeth-ii-wallpaper-preview.jpg"></img>
+                            <img
+                            src={pfp}
+                            >
+
+                            </img>
                         </div>
                         <div className="comment-other">
                             <div className="comment-username">
@@ -82,7 +89,7 @@ function CommentSection({songId}){
                             {`${timePhrase(comment.updatedAt)} `}
                         </span>
                         {comment.userId === sessionUserId ?
-                        <CommentDelete commentId={comment.id} songId={comment.songId}/> :
+                        <CommentDelete className="comment-delete-button" commentId={comment.id} songId={comment.songId}/> :
                         "" }
                     </div>
                 </div>

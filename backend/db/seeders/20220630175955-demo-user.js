@@ -9,6 +9,7 @@ module.exports = {
         username: 'Demo-lition',
         firstName: "Dave",
         lastName: "Chappelle",
+        previewImage: "https://media.discordapp.net/attachments/1017492963720433868/1023811692968300576/3287437690_portrait_of_an_asian_person.png",
         hashedPassword: bcrypt.hashSync('password')
       },
       {
@@ -16,6 +17,7 @@ module.exports = {
         username: 'FakeUser1',
         firstName: "Mark",
         lastName: "Ronson",
+        previewImage: "https://media.discordapp.net/attachments/1017492963720433868/1023811693425471568/2147490529_Portrait_of_a_woman.png",
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
@@ -23,6 +25,7 @@ module.exports = {
         username: 'FakeUser2',
         firstName: "Jeff",
         lastName: "Goldblum",
+        previewImage: "https://media.discordapp.net/attachments/1017492963720433868/1023811693886840842/1060559376_Portrait_of_a_musician.png",
         hashedPassword: bcrypt.hashSync('password3')
       }
     ], {});

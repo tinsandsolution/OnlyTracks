@@ -45,9 +45,9 @@ function SignupFormPage() {
 
   return (
     <form className="modal-form" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      {/* <ul> */}
+        {errors.map((error, idx) => <div className="form-error" key={idx}>{error}</div>)}
+      {/* </ul> */}
       <label>
         <input
           placeholder="Email"

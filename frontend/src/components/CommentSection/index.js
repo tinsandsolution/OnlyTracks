@@ -124,6 +124,7 @@ function CommentSection({ songId }) {
                 <br />
                 <br />
                 <textarea
+                    maxlength="250"
                     type="text"
                     placeholder="Please be polite!"
                     value={comment}

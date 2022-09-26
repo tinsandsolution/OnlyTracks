@@ -16,9 +16,9 @@ function OnlyPlayer(){
     // if (playerSong==="") {
     //     return ""
     // }
-    return (
+    let musicplayer = (
         <AudioPlayer
-        // autoPlay
+        autoPlay
         className="music-player"
         src={playerSong === "" ?
             "":
@@ -30,6 +30,9 @@ function OnlyPlayer(){
         // other props here
       />
     )
+
+    if (playerSong === "") return (<></>)
+    return musicplayer
 }
 
 export default OnlyPlayer;

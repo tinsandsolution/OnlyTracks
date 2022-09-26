@@ -34,8 +34,8 @@
 
 .comment-form > textarea{
     margin-right: 10px;
-    min-width: 100%;
-    max-width: 100%;
+    min-width: 60%;
+    max-width: 99%;
     max-height: 100px;
     min-height: 50px;
     /* height: */

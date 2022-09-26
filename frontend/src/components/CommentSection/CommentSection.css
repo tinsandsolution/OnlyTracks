@@ -141,3 +141,14 @@
     justify-content: center;
     align-items: center;
 }
+
+
+@media screen and (max-width: 1199px) {
+    .comment-right {
+        width: 400px
+    }
+    .comment-text {
+        width: 400px
+    }
+
+  }

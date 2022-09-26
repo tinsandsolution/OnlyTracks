@@ -1,17 +1,30 @@
-#splash {
+.splash {
     /* background-image: '../../assets/robots-dancing-in-a-club.png'; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
+    /* min-width: 1024px; */
     width: 1200px;
     margin: auto;
 }
 
-#splash > img {
-    width: 1200px;
+.splash > img {
+    width: 100%;
 }
+
+@media screen and (max-width: 1199px) {
+    .navbar-outer .navbar-inner {
+      width:1024px;
+    }
+    /* .navbar-outer {
+        justify-content: left;
+    } */
+    .splash{
+        width: 1024px;
+    }
+  }
 
 #splash-upload >*{
     color: white;
@@ -37,7 +50,7 @@
     display: flex;
     justify-content: center;
     margin: none;
-    min-width: 1024px;
+    /* min-width: 1024px; */
     /* height: 50px; */
 }
 
@@ -51,10 +64,12 @@
     /* background-color: #3B8EA5; */
     background-color: #000000;
     max-height: 50px;
-    max-width: 1200px;
-    min-width: 1024px;
+    width: 1200px;
+    /* min-width: 1024px; */
     align-items: center;
 }
+
+
 
 .login-button {
     color: white;

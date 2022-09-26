@@ -43,9 +43,9 @@ function SongSplashPreview(){
 
     return (
         <>
-        <ul className="splash-preview-container">
+        <div className="splash-preview-container">
             {cards}
-        </ul>
+        </div>
         </>
     )
 }

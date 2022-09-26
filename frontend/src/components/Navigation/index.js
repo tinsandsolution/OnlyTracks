@@ -44,11 +44,12 @@ function Navigation({ isLoaded }){
       </>
     );
     splashStuff = (
-      <div id='splash'>
-        {sessionUser ? '' : <img src={splash} alt="splash" className='splash-image'></img>}
+      <div className='splash'>
+        {sessionUser ? '' : <img src={splash} alt="splash" id='splash-image'></img>}
         <p className='splash-welcome'>Check Out Our Selection Of Legal Music!</p>
         <span id='splash-upload'><LoginFormModal isSplash="true"/></span>
         <SongSplashPreview />
+        <p></p>
       </div>
     )
   }

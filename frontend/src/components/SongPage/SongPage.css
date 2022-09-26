@@ -1,6 +1,9 @@
 .song-page-container {
     height: 300px;
     width: 1170px;
+    /* width: 1024px; */
+    min-width: 500px;
+    /* min-width: 1024px; */
     /* border: 1px solid black; */
     display: flex;
     flex-direction: row;
@@ -10,6 +13,12 @@
     background: linear-gradient(157deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 
 }
+
+@media screen and (max-width: 1199px) {
+    .song-page-container {
+      width:994px;
+    }
+  }
 
 .song-page-right {
     display: flex;

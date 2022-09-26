@@ -68,7 +68,7 @@ function HomePage(){
             <div className="homepage-preview-card"
                  key={song.id}>
                 <div className="hover-thing-card">
-                    <img className="splash-preview-image"
+                    <img className="homepage-preview-image"
                          src={song.previewImage}
                          alt={song.title}
                          onClick={() => setPlayerSong(song.url)}

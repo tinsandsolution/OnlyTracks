@@ -8,6 +8,12 @@
     margin-top: none;
     border: 1px solid white;
     cursor: pointer;
+    width: auto;
+    height: min-content;
+}
+
+#modal-song-manage-button {
+    background-color: #f4486c;
 }
 
 /* You don't actually need this file because you can just refer to Navigation.css */

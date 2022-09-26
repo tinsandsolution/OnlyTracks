@@ -107,8 +107,8 @@ function SongManageFormPage({song, setShowModal}) {
           required
         />
       </label>
-      <button type="submit" disabled={errors.length ? true : false}>Update Track</button>
-      <button type="delete" onClick={handleDelete}>Delete Song (Irreversible)</button>
+      <button type="submit" id="modal-song-manage-button" disabled={errors.length ? true : false}>Update Track</button>
+      <button type="delete" id="modal-song-manage-button" onClick={handleDelete}>Delete Song (Irreversible)</button>
     </form>
     </>
   );

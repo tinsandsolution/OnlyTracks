@@ -59,7 +59,6 @@ function SongSubmitForm({setShowModal}) {
       <>
       <form className="modal-form" onSubmit={handleSubmit}>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        <br />
         <label>
           <input
             type="text"
@@ -97,7 +96,10 @@ function SongSubmitForm({setShowModal}) {
         </label>
         {!errors.length ?
         <button type="submit" disabled={errors.length ? true : false}>{errors.length ? "Invalid" : "Create New Track"}</button> :
+        <>
         <br />
+        <br />
+        </>
       }
 
       </form>

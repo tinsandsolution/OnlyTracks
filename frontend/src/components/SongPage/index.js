@@ -88,8 +88,12 @@ function SongPage(){
                     </img>
                 </div>
             </div>
-            {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
-            <CommentSection songId={+songId}/>
+            <div className='below-song'>
+                <CommentSection songId={+songId}/>
+                <div className='below-right-song'>
+                    {sessionUserId === song.userId && <SongManageModal song={song} setSong={setSong}/>}
+                </div>
+            </div>
         </div>
     )
 }

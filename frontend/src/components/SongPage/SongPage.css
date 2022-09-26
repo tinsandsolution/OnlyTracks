@@ -78,3 +78,15 @@
     height: 50px;
     width: 50px;
 }
+
+.below-song {
+    display: flex;
+}
+
+.below-right-song {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+}

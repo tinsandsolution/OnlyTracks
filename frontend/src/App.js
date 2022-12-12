@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import OnlyPlayer from "./components/AudioPlayer"
 import HomePage from "./components/HomePage";
 import SongPage from "./components/SongPage";
+import Search from './components/Search/Search';
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,6 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/search/">
+            <Search />
+          </Route>
           {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}

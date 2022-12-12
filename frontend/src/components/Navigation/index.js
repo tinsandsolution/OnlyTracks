@@ -10,6 +10,7 @@ import SignupFormModal from '../SignupFormModal';
 import SongSubmitModal from '../SongSubmitModal';
 import SongSplashPreview from '../SplashPreview';
 import { useLocation } from "react-router-dom"
+import Searchbar from './Searchbar';
 
 
 function Navigation({ isLoaded }){
@@ -31,6 +32,7 @@ function Navigation({ isLoaded }){
     navLeft = (
       <>
       <NavLink exact to="/" className="reg-nav-link">Home</NavLink>
+      <Searchbar />
       {/* <NavLink exact to="/catalog" className="reg-nav-link">Library</NavLink> */}
       </>
     )

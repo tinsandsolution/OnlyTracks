@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 // automatically directes to https
-if (window.location.protocol !== "https:") {
+if (window.location.protocol !== "https" && window.location.hostname !== "localhost") {
   window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 }
 

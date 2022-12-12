@@ -25,6 +25,13 @@ router.get('/current', requireAuth, async (req, res) => {
   return res.json({"playlists": playlists})
 })
 
+// get all playlist by current user
+router.get('/', async (req, res) => {
+  const playlists = await Playlist.findAll({
+    })
+  return res.json({"playlists": playlists})
+})
+
 //create a playlist
 router.post('/', requireAuth, validatePlaylist, async (req, res, next) => {
     let playlist = await Playlist.create({ "userId": req.user.id ,"name" : req.body.name, "previewImage" : req.body.previewImage })

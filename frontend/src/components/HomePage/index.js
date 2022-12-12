@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import * as songActions from "../../store/songs"
+import * as playlistActions from "../../store/playlists"
+
 import {useMusic} from '../../context/MusicContext'
 import { NavLink } from "react-router-dom";
 
@@ -26,6 +28,8 @@ function HomePage(){
 
     useEffect(()=> {
         dispatch(songActions.getSongs());
+        dispatch(playlistActions.getPlaylists());
+
     },[dispatch])
 
     const songs = Object.values(useSelector(state => state.songs)).filter((song)=>{

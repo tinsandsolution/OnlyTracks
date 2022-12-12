@@ -8,6 +8,8 @@ import OnlyPlayer from "./components/AudioPlayer"
 import HomePage from "./components/HomePage";
 import SongPage from "./components/SongPage";
 import Search from './components/Search/Search';
+import Playlists from "./components/Playlists";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +27,9 @@ function App() {
         <Switch>
           <Route path="/search/">
             <Search />
+          </Route>
+          <Route path="/playlists">
+            <Playlists />
           </Route>
           {/* <Route path="/signup">
             <SignupFormPage />

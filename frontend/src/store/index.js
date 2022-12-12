@@ -3,12 +3,14 @@ import thunk from 'redux-thunk'
 import commentReducer from './comments';
 import sessionReducer from './session';
 import songReducer from './songs';
+import playlistReducer from './playlists';
 // import commentReducer from './comments';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   songs: songReducer,
-  comments: commentReducer
+  comments: commentReducer,
+  playlists: playlistReducer
 });
 
 let enhancer;

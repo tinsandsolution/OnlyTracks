@@ -1,0 +1,29 @@
+.form-submit {
+    display: flex;
+    flex-direction: column;
+    font-family: "Arial";
+    align-items: center;
+    border: 0.4px solid  #647aa3ff;
+    border-radius: 30px;
+    /* background: linear-gradient(0.45turn, #f1dedeff, #0acdffff); */
+    width: 400px;
+    height: 200px;
+}
+
+.input-submit-song {
+    border-radius: 5px;
+    border-width: 0.1px;
+    margin: 1px;
+    font-size: 14px;
+    width: 200px;
+
+}
+
+.button-submit-song {
+    width: 208px;
+    height: 50px;
+    background-color: #0acdffff;
+    border-width: 0.1px;
+    border-radius: 15px;
+    background: linear-gradient(0.90turn, #f1dedeff, #0acdffff);
+}

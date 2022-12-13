@@ -42,7 +42,7 @@ const playlistReducer = (state = initialState, action) => {
       // console.log("damn")
       // console.log("damn" ,{...action.songs.songs})
       // console.log({ ...state, ...action.songs.songs})
-      return {...action.playlists.playlists};
+      return [...action.playlists.playlists];
     // case ADD_SONG:
     //   return { ...state, action}
     //   // console.log("asfddsafadsfasdfdasf")

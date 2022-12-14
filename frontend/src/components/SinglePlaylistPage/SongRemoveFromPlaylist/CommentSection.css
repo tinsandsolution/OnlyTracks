@@ -1,0 +1,154 @@
+.comment-section {
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    /* border: 1px solid black; */
+    width: 50%;
+}
+
+.comment-section > p {
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.posted-comments {
+    border-top: 1px solid #a151b0;
+}
+
+.comment-form {
+    flex-direction: column;
+    /* justify-content: right; */
+    /* align-items: flex-end; */
+    /* border: 1px solid black; */
+    padding: 5px 5px 5px 5px;
+
+}
+
+.comment-other * {
+    word-wrap: break-word;
+}
+
+.comment-left {
+    display: flex;
+}
+
+.comment-form > textarea{
+    margin-right: 10px;
+    min-width: 99%;
+    max-width: 99%;
+    max-height: 100px;
+    min-height: 50px;
+    /* height: */
+    font-size: 14px;
+    border: 1px solid purple;
+    border-radius: 5px;
+}
+
+.comment-form > textarea:focus {
+    outline: 1px solid pink;
+}
+
+.comment-heading {
+    display: flex;
+    justify-content: space-between;
+}
+.comment-right {
+    width: 530px;
+}
+
+.send-comment-button {
+    color: white;
+    text-decoration: none;
+    background-color: #6f58d7;
+    border-radius: 5px;
+    padding: 8px;
+    margin-right: 5px;
+    margin-top: none;
+    border: 1px solid #6f58d7;
+    cursor: pointer;
+}
+
+/* Comment Section Map Shit */
+
+.individual-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    word-wrap: break-word;
+    /* justify-content: space-between; */
+}
+
+
+
+.comment-pfp {
+    width: 50px;
+    height: 50px;
+    /* padding-right: 10px; */
+    margin: 5px 10px 5px 5px;
+}
+
+.comment-pfp > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit:cover;
+}
+
+.comment-username {
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+}
+
+.comment-text {
+    padding-top: 5px;
+    width: 530px;
+    /* word-wrap: break-word; */
+    /* width: min-content; */
+}
+
+.comment-date{
+    color: gray;
+    font-size: 13px;
+    padding-right: 5px;
+    cursor: auto;
+}
+
+.comment-delete-container {
+    margin-top: 3px;
+    text-decoration: none;
+    /* background-color: #6f58d7; */
+    /* border-radius: 10px; */
+    /* padding: 8px; */
+    margin-left: 20px;
+    /* margin-top: none; */
+    /* border: 1px solid #6f58d7; */
+}
+
+.comment-delete-button {
+    color: white;
+    background-color: #d34b8a;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.comment-write-container {
+    background-color: gray;
+    padding: 5px 5px 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 1199px) {
+    .comment-right {
+        width: 400px
+    }
+    .comment-text {
+        width: 400px
+    }
+
+  }

@@ -2,3 +2,20 @@
     background: rgb(131,157,235);
     background: linear-gradient(164deg, rgba(131,157,235,1) 0%, rgba(255,158,158,1) 63%, rgba(247,232,255,1) 100%);
 }
+
+.songs-of-playlist {
+    margin: auto;
+    /* margin-top: 10px; */
+    margin-bottom: 15px;
+    /* border: 1px solid blue; */
+    justify-content: center;
+    display: grid;
+
+    grid-template-columns: 16% 16% 16% 16% 16% 16%;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.songs-of-playlist > .homepage-preview-card > .hover-thing-card > .playlist-preview-image {
+    cursor: pointer;
+}

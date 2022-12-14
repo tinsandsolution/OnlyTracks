@@ -4,13 +4,33 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('PlaylistSongs', [
       {
-        songId: 3,
+        songId: 23,
         playlistId: 1,
       },
       {
         playlistId: 1,
-        songId: 3,
-      }
+        songId: 22,
+      },
+      {
+        playlistId: 1,
+        songId: 21,
+      },
+      {
+        playlistId: 1,
+        songId: 24,
+      },
+      {
+        playlistId: 1,
+        songId: 25,
+      },
+      {
+        playlistId: 1,
+        songId: 26,
+      },
+      {
+        playlistId: 1,
+        songId: 27,
+      },
     ]);
   },
 

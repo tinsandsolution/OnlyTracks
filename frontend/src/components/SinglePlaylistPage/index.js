@@ -5,6 +5,9 @@ import * as sessionActions from "../../store/session";
 import * as songActions from "../../store/songs"
 import * as playlistActions from "../../store/playlists"
 
+import SongsOfPlaylist from './SongsOfPlaylist';
+
+
 import {useMusic} from '../../context/MusicContext'
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import play from '../../assets/transparentplaybutton.png'
@@ -99,6 +102,7 @@ function PlaylistPage(){
                     </img>
                 </div>
             </div>
+            <SongsOfPlaylist playlist={playlist}/>
         </div>
     )
 }

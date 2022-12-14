@@ -13,12 +13,12 @@ const loadPlaylists = (playlists) => {
     }
   }
 
-const uploadPlaylist = (playlist) => {
-    return {
-      type: ADD_PLAYLIST,
-      playlist
-    }
-}
+// const uploadPlaylist = (playlist) => {
+//     return {
+//       type: ADD_PLAYLIST,
+//       playlist
+//     }
+// }
 
 const removePlaylist = (playlistId) => {
   return {
@@ -115,48 +115,42 @@ export const getPlaylists = () => async (dispatch) => {
 //       //then return album id
 // }
 
-// export const addSong = (user) => async (dispatch) => {
-//     const {title, description, file, previewImage} = user
-//     const response = await csrfFetch("/api/users/current", {
-//       method: "GET"
-//     });
-//     const data = await response.json()
+export const addPlaylist = (playlistData) => async (dispatch) => {
+    const {name, previewImage} = playlistData
+    const response = await csrfFetch("/api/users/current", {
+      method: "GET"
+    });
+    const data = await response.json()
 
-//     const userId = data.id
-//     // console.log("current user id", data.id)
-//     const albumId = 1
-//     const url = file
-//     const response2 = await csrfFetch(`/api/albums/1`, {
-//       method: "POST",
-//       body: JSON.stringify({
-//         albumId,
-//         title,
-//         description,
-//         url,
-//         userId,
-//         previewImage
-//       }),
-//     });
-
-//     const data2 = await response2.json();
-//     // console.log("fadsfasdf", data2)
-//     dispatch(uploadSong(data2))
-//     response2.songId = data2.id
-//     // console.log(data2)
-//     // console.log("here is data2", data2)
-//     //again you don't actually need to reload anything
-//     return response2;
+    const userId = data.id
 
 
-//     // const createdSong = await Song.create({
-//     //   userId: albumOwnerId,
-//     //   albumId: albumId,
-//     //   title: title,
-//     //   description: description,
-//     //   url: url,
-//     //   previewImage: previewImage,
-//     // })
-//   }
+    const response2 = await csrfFetch(`/api/playlists/`, {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        userId,
+        previewImage
+      }),
+    });
+
+    const data2 = await response2.json();
+    // console.log("trying to get all songs again")
+    // console.log(response2)
+    response2.playlistId = data2.id
+    dispatch(getPlaylists())
+    return response2;
+
+
+    // const createdSong = await Song.create({
+    //   userId: albumOwnerId,
+    //   albumId: albumId,
+    //   title: title,
+    //   description: description,
+    //   url: url,
+    //   previewImage: previewImage,
+    // })
+  }
 
 //   export const deleteSong = (data) => async (dispatch) => {
 //     const {songId} = data

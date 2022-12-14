@@ -14,12 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       Song.belongsTo(models.Album, { foreignKey: 'id' })
       Song.hasMany(models.Comment, { sourceKey: 'id', foreignKey: 'songId' })
 
-      //Song.hasMany(models.PlaylistSong, { sourceKey: 'id', foreignKey: 'songId' });
+      // defines a sequelize many-to-many association between Playlist and Song through PlaylistSong
       Song.belongsToMany(
           models.Playlist,
           { through: models.PlaylistSong,
             foreignKey: "songId",
-            otherKey: "playlistId"
           }
       );
     }

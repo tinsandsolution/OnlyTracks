@@ -25,10 +25,12 @@ router.get('/current', requireAuth, async (req, res) => {
   return res.json({"playlists": playlists})
 })
 
-// get all playlist by current user
+// get all playlists
 router.get('/', async (req, res) => {
-  const playlists = await Playlist.findAll({
+  console.log("test")
+  const playlists = await Playlist.findAll({ include: Song
     })
+  console.log("test", playlists)
   return res.json({"playlists": playlists})
 })
 

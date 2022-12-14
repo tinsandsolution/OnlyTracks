@@ -11,12 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Playlist.belongsTo(models.User, { foreignKey : 'userId'})
-      //Playlist.hasMany(models.PlaylistSong);//, { sourceKey: 'id', foreignKey: 'playlistId' });
+      // Playlist.hasMany(models.PlaylistSong);//, { sourceKey: 'id', foreignKey: 'playlistId' });
+      // defines a sequelize many-to-many association between Playlist and Song through PlaylistSong
       Playlist.belongsToMany(
           models.Song,
-          { through: models.PlaylistSong,
-            foreignKey: "playlistId",
-            otherKey: "songId"
+          { through: models.PlaylistSong, foreignKey: 'playlistId'
           }
       );
     }

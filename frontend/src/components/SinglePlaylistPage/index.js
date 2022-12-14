@@ -28,6 +28,11 @@ import play from '../../assets/transparentplaybutton.png'
 // Delete:
 // delete playlist entirely
 
+// this function deletes the playlist and redirects you to the playlists page
+function deletePlaylist(playlistId, history, dispatch) {
+    dispatch(playlistActions.DeletePlaylist({playlistId}))
+    history.push('/playlists')
+}
 
 
 function PlaylistPage(){
@@ -90,6 +95,8 @@ function PlaylistPage(){
                 <div className='song-page-left'>
                     <span className="song-page-title">{playlist.name}</span>
                     <AddSongToPlaylistModal playlistId={playlistId}/>
+                    <br/>
+                    <button className='create-playlist add-songs-to-playlist' onClick={() => deletePlaylist(playlistId, history, dispatch)}>Delete Playlist</button>
                     {/* <AddSongToPlaylistModal /> */}
                     {/* <span className="song-page-description">{song.description}</span> */}
                     {/* <div className='song-page-play-button' onClick={() => setPlayerSong(song.url)}>

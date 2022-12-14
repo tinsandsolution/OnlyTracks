@@ -8,7 +8,7 @@ function RemoveSongFromPlaylist({playlistId, songId}) {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        // dispatch(commentActions.deleteComment({playlistId, songId}))
+        dispatch(playlistActions.RemoveSongFromPlaylist({playlistId, songId}))
      }
     return (
         <button className="comment-delete-button" type="delete" onClick={handleDelete}>Remove Song</button>

@@ -19,7 +19,9 @@ import play from '../../assets/transparentplaybutton.png'
 // CREATE: Done
 
 // READ:
-// display songs from the playlist
+// display songs from the playlist: done
+// delete song from playlist: done
+// add song to playlist
 
 
 function PlaylistPage(){

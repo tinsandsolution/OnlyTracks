@@ -9,7 +9,7 @@ import HomePage from "./components/HomePage";
 import SongPage from "./components/SongPage";
 import Search from './components/Search/Search';
 import Playlists from "./components/Playlists";
-
+import SinglePlaylist from "./components/SinglePlaylistPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,24 +28,18 @@ function App() {
           <Route path="/search/">
             <Search />
           </Route>
+          <Route path="/playlists/:playlistId">
+            <SinglePlaylist />
+          </Route>
           <Route path="/playlists">
             <Playlists />
           </Route>
-          {/* <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
           <Route exact path="/">
             {sessionUser && <HomePage />}
           </Route>
-          {/* <Route path="/upload">
-            <SongSubmitPage />
-          </Route> */}
           <Route path="/songs/:songId">
             <SongPage />
           </Route>
-          {/* <Route path="/catalog">
-            <SongReadPage />
-          </Route> */}
         </Switch>
 
       )}

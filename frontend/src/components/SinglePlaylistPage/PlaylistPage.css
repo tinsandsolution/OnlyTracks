@@ -1,0 +1,4 @@
+.playlist-page-container {
+    background: rgb(131,157,235);
+    background: linear-gradient(164deg, rgba(131,157,235,1) 0%, rgba(255,158,158,1) 63%, rgba(247,232,255,1) 100%);
+}

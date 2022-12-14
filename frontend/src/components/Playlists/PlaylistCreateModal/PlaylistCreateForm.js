@@ -45,7 +45,6 @@ function PlaylistCreateForm({setShowModal}) {
           // console.log("apparently there's no errors")
           // console.log(`/songs/${newSongId}`)
           await dispatch(playlistActions.getPlaylists())
-          console.log("fdasfdasfads",item)
           history.push(`/playlists/${item.playlistId}`)
           setShowModal(false)
         }

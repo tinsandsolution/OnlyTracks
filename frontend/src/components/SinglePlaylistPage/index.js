@@ -1,87 +1,106 @@
-import './Playlists.css'
-import { useSelector } from 'react-redux'
+import './PlaylistPage.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as sessionActions from "../../store/session";
+import * as songActions from "../../store/songs"
 import * as playlistActions from "../../store/playlists"
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import PlaylistCreateFormModal from './PlaylistCreateModal'
-const Playlists = () => {
+
+import {useMusic} from '../../context/MusicContext'
+import { Redirect, useParams, useHistory } from "react-router-dom";
+import play from '../../assets/transparentplaybutton.png'
+
+// todo: add a delete button to each song in the playlist
+// todo: add an add song button to each playlist
+// todo: add a delete playlist button to each playlist
+
+// CREATE: Done
+
+// READ:
+// display songs from the playlist
+
+
+function PlaylistPage(){
     const dispatch = useDispatch();
+    const {setPlayerSong} = useMusic()
+    const history = useHistory()
+    let { playlistId } = useParams();
+
+    const sessionUser = useSelector(state => state.session.user);
+
+    const sessionUserId = useSelector((state) => state.session.user).id
+    const playlists = useSelector((state) => state.playlists)
+    const [playlist, setPlaylist] = useState(playlists.find(playlist => +playlist.id === +playlistId))
 
     useEffect(()=> {
         dispatch(playlistActions.getPlaylists());
+    },[])
 
-    },[dispatch])
+    useEffect(()=> {
+        // const playlists = useSelector((state) => state.playlists)
+        setPlaylist(playlists.find(playlist => +playlist.id === +playlistId))
+    })
 
-    const playlists = useSelector((state) => state.playlists)
-    const sessionUser = useSelector(state => state.session.user);
+    // console.log(Date.now()-Date.parse(song.updatedAt))
+    let timePhrase = (dateTimeString) => {
+        let unixTime = Date.now()-Date.parse(dateTimeString)
+        // console.log(Date(dateTimeString))
 
+        if (unixTime >= 86400000) {
+            let phrase = "day"
+            let properUnit = (Math.round(unixTime / 86400000))
+            if (properUnit >= 2) phrase = "days"
+            return `${properUnit} ${phrase} ago`
+        }
+        else if (unixTime >= 3600000) {
+            let phrase = "hour"
+            let properUnit = (Math.round(unixTime / 3600000))
+            if (properUnit >= 2) phrase = "hours"
+            return `${properUnit} ${phrase} ago`
+        }
+        else if (unixTime >= 60000) {
+            let phrase = "minute"
+            let properUnit = (Math.round(unixTime / 60000))
+            if (properUnit >= 2 * 60000) phrase = "minutes"
+            return `${properUnit} ${phrase} ago`
+        }
+        else {
+            return "Moments ago"
+        }
 
-    const currentUserPlaylists = playlists.filter((playlist) => playlist.userId === sessionUser.id)
-    const otherUserPlaylists = playlists.filter((playlist) => playlist.userId !== sessionUser.id)
+    }
 
+    if(!playlist) return (<></>)
 
+    // console.log(timePhrase(song.updatedAt))
+    // if (recency > 3600000)
     return (
-        <div className="homepage-container">
-            <span className='your-playlists-wrapper'>
-                <h1>Your Playlists</h1>
-                <PlaylistCreateFormModal/>
-            </span>
-            <div className="playlists-container">
-                {currentUserPlaylists.map
-                  ((playlist) =>
-                    {
-                        return (
-                            <div className="playlist-card" key={playlist.id}>
-                                <div className="hover-thing-card">
-                                    <img className="homepage-preview-image playlist-preview-image"
-                                        src={playlist.previewImage}
-                                        alt={playlist.title}
-                                        onError={e => { e.currentTarget.src = "https://i.imgur.com/v4C8Lvf.png"; }}
-                                        // onClick={() => setPlayerSong(song.url)}
-                                        >
-                                    </img>
-                                    {/* <div className="play-button">▶️</div> */}
-                                </div>
-                                <div className="homepage-card-song-title">
-                                    <NavLink className="homepage-card-song-title" to={"/playlists/"+playlist.id}>{playlist.name}</NavLink>
-                                </div>
-                            </div>
-                        )
-                    }
-                  )
-                }
-            </div>
-            <h1>Other Users' Playlists</h1>
-            <div className="playlists-container">
-                {otherUserPlaylists.map
-                  ((playlist) =>
-                    {
-                        return (
-                            <div className="playlist-card" key={playlist.id}>
-                                <div className="hover-thing-card">
-                                    <img className="homepage-preview-image playlist-preview-image"
-                                        src={playlist.previewImage}
-                                        alt={playlist.title}
-                                        onError={e => { e.currentTarget.src = "https://i.imgur.com/v4C8Lvf.png"; }}
-                                        // onClick={() => setPlayerSong(song.url)}
-                                        >
-                                    </img>
-                                    {/* <div className="play-button">▶️</div> */}
-                                </div>
-                                <div className="homepage-card-song-title">
-                                    <NavLink className="homepage-card-song-title" to={"/playlists/"+playlist.id}>{playlist.name}</NavLink>
-                                </div>
-                            </div>
-                        )
-                    }
-                  )
-                }
-            </div>
+        <div className="mass-container">
+            <div className='song-page-container playlist-page-container'>
+                <div className='song-page-left'>
+                    <span className="song-page-title">{playlist.name}</span>
+                    {/* <span className="song-page-description">{song.description}</span> */}
+                    {/* <div className='song-page-play-button' onClick={() => setPlayerSong(song.url)}>
+                        <img src={play} alt="play" ></img>
+                    </div> */}
 
+                </div>
+
+                {/* <p>{song.id}</p> */}
+                {/* <p>{song.url}</p> */}
+                <div className='song-page-right'>
+                    <div className='song-page-time'>
+                        {timePhrase(playlist.updatedAt)}
+                    </div>
+                    <img className='song-page-preview-image'
+                        src={playlist.previewImage}
+                        onError={e => { e.currentTarget.src = "https://i.imgur.com/v4C8Lvf.png"; }}
+                        alt={playlist.name}
+                        >
+                    </img>
+                </div>
+            </div>
         </div>
-
     )
 }
 
-export default Playlists
+export default PlaylistPage;

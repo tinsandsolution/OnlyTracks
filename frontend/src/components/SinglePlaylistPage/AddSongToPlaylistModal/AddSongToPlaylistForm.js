@@ -22,11 +22,17 @@ const filterSongs = (terms, songs) => {
     })
 }
 
-const makeSongs = (songArray) => songArray.map(song => {
+const makeSongs = (songArray, playlistId, setShowModal, dispatch) => songArray.map(song => {
     // const {setPlayerSong} = useMusic()
+    const songId = song.id
     return (
         <div className="astpf-preview-card"
-             key={song.id}>
+             key={song.id}
+             onClick={() => {
+                dispatch(playlistActions.AddSongToPlaylist({songId, playlistId}))
+                setShowModal(false)
+             }}
+             >
             <div className="astpf-thing-card">
                 <img className="astpf-preview-image"
                      src={song.previewImage}
@@ -43,7 +49,8 @@ const makeSongs = (songArray) => songArray.map(song => {
     )
 })
 
-const Search = (query) => {
+
+const Search = (query, playlistId, setShowModal, dispatch) => {
     let songs = useSelector((state) => state.songs)
     const terms = query.split(" ")
 
@@ -52,7 +59,7 @@ const Search = (query) => {
     console.log(filteredSongs)
     return (
         <>
-        {filteredSongs.length === 0 ? <div className="no-results">No results found</div> : makeSongs(filteredSongs)}
+        {filteredSongs.length === 0 ? <div className="no-results">No results found</div> : makeSongs(filteredSongs, playlistId, setShowModal, dispatch)}
         </>
 
     )
@@ -74,7 +81,7 @@ function AddSongToPlaylistForm({setShowModal, playlistId}) {
             onChange={(e) => setQuery(e.target.value)}
           />
         </label>
-        <div className="search-results-playlist-songs">{Search(query)}</div>
+        <div className="search-results-playlist-songs">{Search(query, playlistId, setShowModal, dispatch)}</div>
 
         <br />
         <br />

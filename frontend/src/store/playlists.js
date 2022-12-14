@@ -154,9 +154,19 @@ export const addPlaylist = (playlistData) => async (dispatch) => {
 
 export const RemoveSongFromPlaylist = (data) => async (dispatch) => {
   const {songId, playlistId} = data
-  // console.log("attempting to delete from songs.js")
+  // console.log("attempting to delete from playlist")
   const response = await csrfFetch(`/api/playlists/${playlistId}/songs/${songId}`, {
     method: "DELETE",
+  });
+  dispatch(getPlaylists())
+  return response;
+}
+
+export const AddSongToPlaylist = (data) => async (dispatch) => {
+  const {songId, playlistId} = data
+  // console.log("attempting to add to playlist")
+  const response = await csrfFetch(`/api/playlists/${playlistId}/songs/${songId}`, {
+    method: "POST",
   });
   dispatch(getPlaylists())
   return response;

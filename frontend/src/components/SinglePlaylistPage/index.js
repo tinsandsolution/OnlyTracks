@@ -6,7 +6,7 @@ import * as songActions from "../../store/songs"
 import * as playlistActions from "../../store/playlists"
 
 import SongsOfPlaylist from './SongsOfPlaylist';
-
+import AddSongToPlaylistModal from './AddSongToPlaylistModal';
 
 import {useMusic} from '../../context/MusicContext'
 import { Redirect, useParams, useHistory } from "react-router-dom";
@@ -20,8 +20,14 @@ import play from '../../assets/transparentplaybutton.png'
 
 // READ:
 // display songs from the playlist: done
+
+// Update:
 // delete song from playlist: done
 // add song to playlist
+
+// Delete:
+// delete playlist entirely
+
 
 
 function PlaylistPage(){
@@ -83,6 +89,8 @@ function PlaylistPage(){
             <div className='song-page-container playlist-page-container'>
                 <div className='song-page-left'>
                     <span className="song-page-title">{playlist.name}</span>
+                    <AddSongToPlaylistModal playlistId={playlistId}/>
+                    {/* <AddSongToPlaylistModal /> */}
                     {/* <span className="song-page-description">{song.description}</span> */}
                     {/* <div className='song-page-play-button' onClick={() => setPlayerSong(song.url)}>
                         <img src={play} alt="play" ></img>

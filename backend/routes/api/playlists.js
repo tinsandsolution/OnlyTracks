@@ -241,5 +241,51 @@ router.delete('/:id/songs/:songId', requireAuth, async (req, res) => {
   return res.status(200).json({ "message" : "Successfully deleted", "status code" : 200})
 })
 
+// add song to playlist
+router.post('/:id/songs/:songId', requireAuth, async (req, res) => {
+  const userId = req.user.id
+
+  const playlist = await Playlist.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+
+  if (playlist === null) {
+    const err = Error("Couldn't find a playlist with the specified id");
+    err.message = "Playlist couldn't be found"
+    err.status = 404;
+    err.title = "Couldn't find a playlist with the specified id";
+    next(err)
+  }
+
+  const ownerId = playlist.toJSON().userId
+
+  if (ownerId !== userId) {
+    return res.status(403).json({
+      "message" : "Playlist must belong to the current user"
+    })
+  }
+
+  const song = await Song.findOne({
+      where: {
+        id: req.params.songId
+      }
+    })
+
+  if (song === null) {
+    const err = Error("Couldn't find a song with the specified id");
+    err.message = "Song couldn't be found"
+    err.status = 404;
+    err.title = "Couldn't find a song with the specified id";
+    next(err)
+  }
+
+  const addedPlaylistSong = await PlaylistSong.create(
+    {playlistId : req.params.id, songId : req.params.songId}
+  )
+
+  return res.status(200).json({ "message" : "Successfully added", "status code" : 200})
+})
 
 module.exports = router;
